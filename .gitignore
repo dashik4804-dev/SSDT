@@ -1,3 +1,5 @@
 "bin/" 
 "obj/" 
 "*.zip" 
+/ClubPlatform(2).zip
+/ClubPlatform.zip
