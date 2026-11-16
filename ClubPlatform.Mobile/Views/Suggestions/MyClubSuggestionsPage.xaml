@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClubPlatform.Mobile.Views.Suggestions.MyClubSuggestionsPage"
+             Title="Мои предложения"
+             BackgroundColor="{StaticResource AppBackground}">
+    <Grid Padding="20,18,20,14" RowDefinitions="Auto,Auto,*" RowSpacing="18">
+        <VerticalStackLayout Grid.Row="0" Spacing="7">
+            <Label Text="💜 Мои предложения" FontSize="27" FontAttributes="Bold"
+                   TextColor="{StaticResource BrandBlue}" />
+            <Label Text="Следи за своими идеями и ответами администрации"
+                   FontSize="14" TextColor="{StaticResource AppTextSecondary}" />
+        </VerticalStackLayout>
+        <Border Grid.Row="1" BackgroundColor="White" Stroke="{StaticResource AppBorder}"
+                StrokeThickness="1" StrokeShape="RoundRectangle 16" Padding="12,10">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                <Label x:Name="StatusLabel" Text="Загружаем предложения..."
+                       FontSize="13" TextColor="{StaticResource AppTextSecondary}"
+                       VerticalOptions="Center" />
+                <Button Grid.Column="1" Text="↻ Обновить" Clicked="OnRefreshClicked"
+                        BackgroundColor="{StaticResource LightPurple}"
+                        TextColor="{StaticResource BrandPurple}"
+                        FontAttributes="Bold" CornerRadius="12" Padding="12,8" />
+            </Grid>
+        </Border>
+        <CollectionView Grid.Row="2" x:Name="SuggestionsCollection" SelectionMode="None">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout Padding="16,40" Spacing="12"
+                                     HorizontalOptions="Fill" VerticalOptions="Center">
+                    <Label Text="💌" FontSize="42" HorizontalTextAlignment="Center" />
+                    <Label Text="Предложений пока нет" FontSize="21" FontAttributes="Bold"
+                           TextColor="{StaticResource BrandBlue}"
+                           HorizontalTextAlignment="Center" />
+                    <Label Text="Когда ты предложишь новый клуб, здесь появится его статус и ответ администратора."
+                           FontSize="14" TextColor="{StaticResource AppTextSecondary}"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="0,0,0,14" Padding="17" BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}" StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+                        <VerticalStackLayout Spacing="11">
+                            <Label Text="{Binding Name}" FontSize="19" FontAttributes="Bold"
+                                   TextColor="{StaticResource AppText}" />
+                            <Border BackgroundColor="{StaticResource LightPurple}"
+                                    StrokeThickness="0" StrokeShape="RoundRectangle 12"
+                                    Padding="11,7" HorizontalOptions="Start">
+                                <Label Text="{Binding StatusText}" FontSize="13"
+                                       FontAttributes="Bold" TextColor="{StaticResource BrandPurple}" />
+                            </Border>
+                            <Label Text="{Binding Description}" FontSize="14"
+                                   TextColor="{StaticResource AppText}" />
+                            <Label Text="{Binding InterestText}" IsVisible="{Binding HasInterest}"
+                                   FontSize="13" TextColor="{StaticResource BrandPurple}" />
+                            <Label Text="{Binding SuggestedAddressText}"
+                                   IsVisible="{Binding HasSuggestedAddress}"
+                                   FontSize="13" TextColor="{StaticResource AppTextSecondary}" />
+                            <BoxView HeightRequest="1" Color="{StaticResource AppBorder}" />
+                            <Label Text="{Binding AdminCommentText}"
+                                   IsVisible="{Binding HasAdminComment}" FontSize="13"
+                                   TextColor="{StaticResource AppText}" />
+                            <Label Text="{Binding CreatedAtText}" FontSize="12"
+                                   TextColor="{StaticResource AppTextSecondary}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

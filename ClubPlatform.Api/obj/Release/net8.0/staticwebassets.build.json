@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "DzcSq57dEerlHpHesInDugNRRdWo4cOsU6fn4eVjTo0=",
+  "Source": "ClubPlatform.Api",
+  "BasePath": "_content/ClubPlatform.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ClubPlatform.Api\\wwwroot",
+      "Source": "ClubPlatform.Api",
+      "ContentRoot": "F:\\project_KR\\KR\\ClubPlatform\\ClubPlatform.Api\\wwwroot\\",
+      "BasePath": "_content/ClubPlatform.Api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "F:\\project_KR\\KR\\ClubPlatform\\ClubPlatform.Api\\wwwroot\\chat-test.html",
+      "SourceId": "ClubPlatform.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\project_KR\\KR\\ClubPlatform\\ClubPlatform.Api\\wwwroot\\",
+      "BasePath": "_content/ClubPlatform.Api",
+      "RelativePath": "chat-test.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\chat-test.html"
+    }
+  ]
+}

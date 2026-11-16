@@ -1,0 +1,730 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ClubPlatform.Mobile</name>
+    </assembly>
+    <members>
+        <member name="T:ClubPlatform.Mobile.Constants.ApiConstants">
+            <summary>
+            Настройки подключения мобильного приложения
+            к Backend через USB (ADB reverse).
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.MainPage">
+            <summary>
+            Временная страница для проверки связи с Backend.
+            Позже заменим её настоящим экраном Welcome.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.MainPage.OnCheckApiClicked(System.Object,System.EventArgs)">
+            <summary>
+            Выполняет тестовый запрос к API.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.AdminSupportTicketItem">
+            <summary>
+            Модель карточки обращения для панели администратора.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.ApiHealthResponse">
+            <summary>
+            Ответ API на запрос проверки доступности сервера.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.BannedMemberItem">
+            <summary>
+            Информация о пользователе, заблокированном в клубе.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.ChatMessageItem">
+            <summary>
+            Модель сообщения для отображения в мобильном чате.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.ClubListItem">
+            <summary>
+            Данные клуба, необходимые для карточки в каталоге.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.ClubSuggestionListItem">
+            <summary>
+            Данные предложения в интерфейсе мобильного приложения.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.ImageUploadResponse">
+            <summary>
+            Ответ сервера после загрузки изображения в Cloudinary.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.InterestListItem">
+            <summary>
+            Интерес для отображения в фильтре каталога.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.MyReportItem">
+            <summary>
+            Модель карточки жалобы в личном кабинете пользователя.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.PublicUserProfileResponse">
+            <summary>
+            Ответ API с публичным профилем другого пользователя.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.PublicUserInfo">
+            <summary>
+            Публичная информация о пользователе.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.PublicUserClubItem">
+            <summary>
+            Клуб, в котором состоит пользователь.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.RespondSupportTicketViewModel">
+            <summary>
+            Модель для отправки ответа администратора на обращение.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.SupportTicketViewModel">
+            <summary>
+            Модель обращения для отображения на мобильной странице.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Models.UserProfileResponse">
+            <summary>
+            Ответ API с данными текущего пользователя.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Services.Api.ApiService">
+            <summary>
+            Реализация HTTP-запросов к ASP.NET Core API.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.ApiService.GetAsync``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Выполняет GET-запрос.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.ApiService.PostAsync``2(System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Выполняет POST-запрос с JSON-телом.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.ApiService.PostFileAsync``1(System.String,System.IO.Stream,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Отправляет файл на сервер и читает JSON-ответ.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.ApiService.SetBearerToken(System.String)">
+            <summary>
+            Устанавливает или удаляет JWT в заголовках запросов.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.ApiService.PutAsync``2(System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Отправляет PUT-запрос и десериализует ответ сервера.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.ApiService.PutAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Выполняет PUT-запрос без тела.
+            Используется, например, для включения или снятия ограничения.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.ApiService.DeleteAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Выполняет DELETE-запрос.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Services.Api.IApiService">
+            <summary>
+            Общий интерфейс для HTTP-запросов к Backend.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.IApiService.GetAsync``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Выполняет GET-запрос и преобразует JSON в C#-объект.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.IApiService.PostAsync``2(System.String,``0,System.Threading.CancellationToken)">
+            <summary>
+            Выполняет POST-запрос с JSON-телом.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.IApiService.PostFileAsync``1(System.String,System.IO.Stream,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Загружает файл через multipart/form-data.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Api.IApiService.SetBearerToken(System.String)">
+            <summary>
+            Устанавливает JWT для последующих запросов.
+            Если token равен null или пуст, авторизация сбрасывается.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Services.Storage.ITokenStorage">
+            <summary>
+            Интерфейс безопасного хранения JWT-токена.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Storage.ITokenStorage.SaveTokenAsync(System.String)">
+            <summary>
+            Сохраняет токен пользователя.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Storage.ITokenStorage.GetTokenAsync">
+            <summary>
+            Получает сохранённый токен.
+            Если токена нет, возвращает null.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Storage.ITokenStorage.RemoveTokenAsync">
+            <summary>
+            Удаляет сохранённый токен при выходе.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Services.Storage.SecureTokenStorage">
+            <summary>
+            Безопасное хранение JWT через SecureStorage MAUI.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Storage.SecureTokenStorage.SaveTokenAsync(System.String)">
+            <summary>
+            Сохраняет JWT на устройстве.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Storage.SecureTokenStorage.GetTokenAsync">
+            <summary>
+            Возвращает сохранённый JWT.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Services.Storage.SecureTokenStorage.RemoveTokenAsync">
+            <summary>
+            Удаляет JWT.
+            Вызывается при выходе из аккаунта.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminClubSuggestionsPage.LoadSuggestionsAsync">
+            <summary>
+            Загружает все предложения, доступные администратору.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminClubSuggestionsPage.ReviewAsync(System.Object,System.String)">
+            <summary>
+            Сохраняет решение администратора и необязательный комментарий.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminClubSuggestionsPage.OnCreateClubClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает форму создания клуба с данными из предложения.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminHomePage.OnReportsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает существующий экран жалоб.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminHomePage.OnManageClubsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает существующий экран управления клубами.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminHomePage.OnMutedUsersClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает список пользователей с активными ограничениями.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminHomePage.OnClubSuggestionsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает список предложений новых клубов.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminHomePage.OnManageInterestsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает управление интересами.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminHomePage.OnSupportTicketsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает обращения пользователей в службу поддержки.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminPage.LoadReportsAsync">
+            <summary>
+            Загружает список жалоб с сервера.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminPage.GetReport(System.Object)">
+            <summary>
+            Получает жалобу, к карточке которой относится кнопка.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminPage.OnRejectClicked(System.Object,System.EventArgs)">
+            <summary>
+            Отклоняет жалобу.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminPage.ChangeStatusAsync(System.Object,ClubPlatform.Shared.Enums.ReportStatus)">
+            <summary>
+            Изменяет статус жалобы.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminPage.OnDeleteMessageClicked(System.Object,System.EventArgs)">
+            <summary>
+            Удаляет сообщение после подтверждения администратора.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.AdminPage.OnRefreshClicked(System.Object,System.EventArgs)">
+            <summary>
+            Обновляет список жалоб.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.ClubEditorPage.LoadEditorAsync">
+            <summary>
+            Заполняет поля клуба и загружает доступные интересы.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.ClubEditorPage.ShowPhoto(System.String)">
+            <summary>
+            Показывает уже сохранённую фотографию.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.ClubEditorPage.OnChoosePhotoClicked(System.Object,System.EventArgs)">
+            <summary>
+            Выбирает новую фотографию клуба.
+            Сам файл загружается в Cloudinary при сохранении формы.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.ClubEditorPage.OnSaveClicked(System.Object,System.EventArgs)">
+            <summary>
+            Проверяет форму и создаёт новый клуб либо сохраняет изменения.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Views.Admin.ClubEditorPage.InterestOption">
+            <summary>
+            Вариант интереса с состоянием флажка.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.ClubManagementPage.LoadClubsAsync">
+            <summary>
+            Загружает актуальный список клубов с сервера.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.InterestManagementPage.LoadInterestsAsync">
+            <summary>
+            Загружает актуальный список интересов с сервера.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.InterestManagementPage.OnSaveClicked(System.Object,System.EventArgs)">
+            <summary>
+            Создаёт новый интерес или сохраняет изменения.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.InterestManagementPage.OnEditClicked(System.Object,System.EventArgs)">
+            <summary>
+            Заполняет форму данными выбранного интереса.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.InterestManagementPage.OnCancelEditClicked(System.Object,System.EventArgs)">
+            <summary>
+            Отменяет редактирование и очищает форму.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.InterestManagementPage.OnDeleteClicked(System.Object,System.EventArgs)">
+            <summary>
+            Удаляет выбранный интерес после подтверждения.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.InterestManagementPage.ClearForm">
+            <summary>
+            Очищает поля и возвращает форму в режим создания.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.MutedUsersPage.LoadClubsAsync">
+            <summary>
+            Загружает список клубов для выбора.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.MutedUsersPage.LoadMutedUsersAsync">
+            <summary>
+            Загружает пользователей с запретом на сообщения.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.MutedUsersPage.LoadRemovedUsersAsync">
+            <summary>
+            Загружает пользователей, удалённых из выбранного клуба.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.MutedUsersPage.OnMutedTabClicked(System.Object,System.EventArgs)">
+            <summary>
+            Переключает страницу на пользователей с запретом писать.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.MutedUsersPage.OnRemovedTabClicked(System.Object,System.EventArgs)">
+            <summary>
+            Переключает страницу на удалённых пользователей.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.MutedUsersPage.OnClubPickerSelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Загружает соответствующий список после выбора клуба.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.MutedUsersPage.OnUnmuteClicked(System.Object,System.EventArgs)">
+            <summary>
+            Снимает запрет на отправку сообщений.
+            Пользователь остаётся участником клуба.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.MutedUsersPage.OnUnbanClicked(System.Object,System.EventArgs)">
+            <summary>
+            Снимает блокировку с пользователя, удалённого из клуба.
+            После этого он сможет снова вступить в клуб.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Admin.MutedUsersPage.OnRefreshClicked(System.Object,System.EventArgs)">
+            <summary>
+            Обновляет открытый в данный момент список.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ChatsPage.LoadChatsAsync">
+            <summary>
+            Загружает клубы, чьи чаты доступны текущему пользователю.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ChatsPage.OnClubTapped(System.Object,Microsoft.Maui.Controls.TappedEventArgs)">
+            <summary>
+            Открывает переписку выбранного клуба.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.LoadHistoryAsync">
+            <summary>
+            Загружает ранее отправленные сообщения из API.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.ConnectAsync">
+            <summary>
+            Создаёт SignalR-соединение и входит в группу чата клуба.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.PrepareMessage(ClubPlatform.Mobile.Models.ChatMessageItem)">
+            <summary>
+            Определяет, принадлежит ли сообщение
+            текущему пользователю.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.RefreshMessageAppearance">
+            <summary>
+            Обновляет оформление уже загруженной истории
+            после определения текущего пользователя.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.AddMessage(ClubPlatform.Mobile.Models.ChatMessageItem)">
+            <summary>
+            Добавляет сообщение, полученное через SignalR.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.HandleMessageDeleted(System.Guid)">
+            <summary>
+            Помечает удалённое сообщение, не убирая его из истории.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.HandleMuteChanged(System.Guid,System.Boolean)">
+            <summary>
+            Обрабатывает изменение ограничения для текущего пользователя.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.HandleRemovedFromClubAsync">
+            <summary>
+            Обрабатывает принудительное исключение пользователя из клуба.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.UpdateSendControls">
+            <summary>
+            Обновляет доступность поля ввода и кнопки отправки.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.ClearSelectedMessage">
+            <summary>
+            Снимает выделение сообщения, выбранного для жалобы.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.TryGetProperty(System.Text.Json.JsonElement,System.String,System.String,System.Text.Json.JsonElement@)">
+            <summary>
+            Безопасно ищет JSON-поле по имени в camelCase или PascalCase.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.SendCurrentMessageAsync">
+            <summary>
+            Отправляет сообщение через SignalR.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.OnReportSelectedClicked(System.Object,System.EventArgs)">
+            <summary>
+            Позволяет участнику клуба пожаловаться на сообщение.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ChatPage.OnMessageTapped(System.Object,Microsoft.Maui.Controls.TappedEventArgs)">
+            <summary>
+            Выбирает сообщение, на которое пользователь хочет пожаловаться.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubDetailsPage.LoadClubAsync">
+            <summary>
+            Загружает подробные данные о выбранном клубе.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubDetailsPage.DisplayClub(ClubPlatform.Mobile.Models.ClubListItem)">
+            <summary>
+            Отображает данные клуба на странице.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubDetailsPage.OnJoinClicked(System.Object,System.EventArgs)">
+            <summary>
+            Отправляет запрос на вступление в клуб.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubDetailsPage.OnChatClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает чат выбранного клуба.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubDetailsPage.OnLeaveClicked(System.Object,System.EventArgs)">
+            <summary>
+            Позволяет участнику добровольно выйти из клуба.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.LoadDataAsync">
+            <summary>
+            Загружает клубы и интересы с сервера.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.BuildInterestFilters(System.Collections.Generic.List{ClubPlatform.Mobile.Models.InterestListItem})">
+            <summary>
+            Создаёт кнопки для выбора одного или нескольких интересов.
+            </summary>
+            <summary>
+            Создаёт компактные кнопки для выбора интересов.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.ToggleInterestFilter(System.Guid)">
+            <summary>
+            Переключает выбранный интерес.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.OnAllInterestsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Сбрасывает фильтр и возвращает все клубы.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.UpdateInterestFilterButtons">
+            <summary>
+            Обновляет оформление фильтров интересов.
+            Выбранные интересы выделяются фиолетовым.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.ApplyFilters">
+            <summary>
+            Применяет поиск и выбранный фильтр интересов.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.OnClubTapped(System.Object,Microsoft.Maui.Controls.TappedEventArgs)">
+            <summary>
+            Открывает подробную информацию о выбранном клубе.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.OnProfileClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает профиль текущего пользователя.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.OnSuggestClubClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает форму отправки новой идеи.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.OnMySuggestionsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает личный список предложений пользователя.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Clubs.ClubsPage.UpdateSuggestionButtonsVisibilityAsync">
+            <summary>
+            Показывает кнопки предложений только обычным пользователям.
+            </summary>
+            <summary>
+            Показывает предложения обычному пользователю,
+            скрывает их у администратора.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.EditProfilePage.LoadProfileAsync">
+            <summary>
+            Загружает текущие данные в поля формы.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.EditProfilePage.ShowPhoto(System.String)">
+            <summary>
+            Отображает уже сохранённую фотографию.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.EditProfilePage.OnChoosePhotoClicked(System.Object,System.EventArgs)">
+            <summary>
+            Выбирает изображение с устройства.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.EditProfilePage.OnSaveClicked(System.Object,System.EventArgs)">
+            <summary>
+            Проверяет форму, загружает фото при необходимости
+            и сохраняет новые данные через API.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Views.LoginPage">
+            <summary>
+            Страница входа в ClubPlatform.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.LoginPage.OnLoginClicked(System.Object,System.EventArgs)">
+            <summary>
+            Выполняет вход через Backend.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.LoginPage.OnBackClicked(System.Object,System.EventArgs)">
+            <summary>
+            Возвращает пользователя на Welcome.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Views.MainTabsPage">
+            <summary>
+            Основная навигация мобильного приложения:
+            клубы, чаты и профиль.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ProfilePage.LoadProfileAsync">
+            <summary>
+            Получает актуальную информацию о текущем пользователе.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ProfilePage.LoadMyClubsAsync(System.Guid)">
+            <summary>
+            Загружает и отображает клубы, в которых состоит текущий пользователь.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ProfilePage.OnLogoutClicked(System.Object,System.EventArgs)">
+            <summary>
+            Завершает пользовательский сеанс.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ProfilePage.OnEditProfileClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает форму редактирования профиля.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ProfilePage.OnAdminPanelClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает главное меню административной панели.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ProfilePage.OnCreateSupportTicketClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает страницу создания обращения в поддержку.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ProfilePage.OnMySupportTicketsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает список обращений текущего пользователя.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.ProfilePage.OnMyReportsClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает список жалоб, отправленных текущим пользователем.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Views.RegisterPage">
+            <summary>
+            Страница регистрации пользователя.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.RegisterPage.OnChoosePhotoClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает выбор изображения на устройстве.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.RegisterPage.OnRegisterClicked(System.Object,System.EventArgs)">
+            <summary>
+            Проверяет форму и создаёт пользователя.
+            Сначала загружает фотографию, затем регистрирует аккаунт.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.RegisterPage.OnBackClicked(System.Object,System.EventArgs)">
+            <summary>
+            Возвращает пользователя к Welcome.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Views.Suggestions.SuggestClubPage.InterestPickerOption">
+            <summary>
+            Вариант интереса для выпадающего списка.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Suggestions.SuggestClubPage.LoadInterestsAsync">
+            <summary>
+            Загружает существующие интересы и добавляет вариант «Другое».
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Suggestions.SuggestClubPage.OnInterestSelectionChanged(System.Object,System.EventArgs)">
+            <summary>
+            Показывает поле ввода, если пользователь выбрал «Другое».
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Views.Support.AdminSupportTicketsPage">
+            <summary>
+            Страница просмотра и обработки обращений пользователей администратором.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Support.AdminSupportTicketsPage.OnAppearing">
+            <summary>
+            При открытии страницы загружаем обращения с сервера.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Support.AdminSupportTicketsPage.LoadTicketsAsync">
+            <summary>
+            Загружает все обращения пользователей.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Support.AdminSupportTicketsPage.OnSendResponseClicked(System.Object,System.EventArgs)">
+            <summary>
+            Отправляет ответ администратора на выбранное обращение.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Views.Support.CreateSupportTicketPage">
+            <summary>
+            Страница создания обращения в службу поддержки.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Views.Support.MySupportTicketsPage">
+            <summary>
+            Страница просмотра обращений текущего пользователя.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.Support.MySupportTicketsPage.LoadTicketsAsync">
+            <summary>
+            Загружает обращения текущего пользователя с сервера.
+            </summary>
+        </member>
+        <member name="T:ClubPlatform.Mobile.Views.WelcomePage">
+            <summary>
+            Стартовая страница приложения.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.WelcomePage.OnLoginClicked(System.Object,System.EventArgs)">
+            <summary>
+            Переходит к форме входа.
+            </summary>
+        </member>
+        <member name="M:ClubPlatform.Mobile.Views.WelcomePage.OnRegisterClicked(System.Object,System.EventArgs)">
+            <summary>
+            Открывает экран регистрации.
+            </summary>
+        </member>
+    </members>
+</doc>

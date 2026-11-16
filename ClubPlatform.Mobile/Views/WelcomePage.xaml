@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.WelcomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Свои люди"
+    BackgroundColor="#F7F5FF"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- ГРАДИЕНТНЫЙ ПРИВЕТСТВЕННЫЙ БЛОК -->
+            <Border
+                Padding="24,40,24,30"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 0,0,28,28">
+
+                <Border.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="1,1">
+
+                        <GradientStop
+                            Color="{StaticResource BrandBlue}"
+                            Offset="0" />
+
+                        <GradientStop
+                            Color="{StaticResource BrandPurple}"
+                            Offset="0.65" />
+
+                        <GradientStop
+                            Color="{StaticResource BrandPink}"
+                            Offset="1" />
+
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <VerticalStackLayout Spacing="22">
+
+                    <!-- ЛОГОТИП И НАЗВАНИЕ -->
+                    <Grid
+                        ColumnDefinitions="58,*"
+                        ColumnSpacing="13">
+
+                        <Border
+                            Grid.Column="0"
+                            WidthRequest="56"
+                            HeightRequest="56"
+                            BackgroundColor="#553BEE"
+                            Stroke="#A99BFF"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 18">
+
+                            <Label
+                                Text="✦"
+                                FontSize="32"
+                                TextColor="White"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center" />
+
+                        </Border>
+
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            Spacing="4"
+                            VerticalOptions="Center">
+
+                            <Label
+                                Text="СВОИ ЛЮДИ"
+                                FontSize="19"
+                                FontAttributes="Bold"
+                                TextColor="White" />
+
+                            <Label
+                                Text="Москва · Люди · Интересы"
+                                FontSize="12"
+                                TextColor="#EDE4FF" />
+
+                        </VerticalStackLayout>
+
+                    </Grid>
+
+                    <!-- ПРИВЕТСТВИЕ -->
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="Твои люди уже рядом 💜"
+                            FontSize="34"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            LineBreakMode="WordWrap" />
+
+                        <Label
+                            Text="Находи клубы по интересам, знакомься и проводи время с теми, кто на одной волне."
+                            FontSize="15"
+                            TextColor="#F0E9FF"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                    <!-- ПРЕИМУЩЕСТВА -->
+                    <FlexLayout
+                        Direction="Row"
+                        Wrap="Wrap"
+                        JustifyContent="Start">
+
+                        <Border
+                            Margin="0,0,8,8"
+                            Padding="12,8"
+                            BackgroundColor="#6549F1"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 20">
+
+                            <Label
+                                Text="✨ Знакомства"
+                                FontSize="11"
+                                TextColor="White" />
+
+                        </Border>
+
+                        <Border
+                            Margin="0,0,8,8"
+                            Padding="12,8"
+                            BackgroundColor="#6549F1"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 20">
+
+                            <Label
+                                Text="💬 Общение"
+                                FontSize="11"
+                                TextColor="White" />
+
+                        </Border>
+
+                        <Border
+                            Margin="0,0,8,8"
+                            Padding="12,8"
+                            BackgroundColor="#6549F1"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 20">
+
+                            <Label
+                                Text="🎉 Встречи"
+                                FontSize="11"
+                                TextColor="White" />
+
+                        </Border>
+
+                    </FlexLayout>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- ОСНОВНАЯ ЧАСТЬ -->
+            <VerticalStackLayout
+                Padding="18,22,18,30"
+                Spacing="20">
+
+                <!-- ПРИМЕРЫ КЛУБОВ -->
+                <Border
+                    Padding="18"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 22">
+
+                    <VerticalStackLayout Spacing="18">
+
+                        <Label
+                            Text="🌟 Найди клуб по душе"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <!-- КНИГИ -->
+                        <Grid
+                            ColumnDefinitions="48,*"
+                            ColumnSpacing="12">
+
+                            <Border
+                                WidthRequest="46"
+                                HeightRequest="46"
+                                BackgroundColor="{StaticResource LightPurple}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Label
+                                    Text="📚"
+                                    FontSize="23"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                            </Border>
+
+                            <Label
+                                Grid.Column="1"
+                                Text="Книги и новые знакомства"
+                                FontSize="15"
+                                TextColor="{StaticResource AppText}"
+                                VerticalOptions="Center" />
+
+                        </Grid>
+
+                        <!-- ИГРЫ -->
+                        <Grid
+                            ColumnDefinitions="48,*"
+                            ColumnSpacing="12">
+
+                            <Border
+                                WidthRequest="46"
+                                HeightRequest="46"
+                                BackgroundColor="{StaticResource LightPink}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Label
+                                    Text="🎲"
+                                    FontSize="23"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                            </Border>
+
+                            <Label
+                                Grid.Column="1"
+                                Text="Настольные игры"
+                                FontSize="15"
+                                TextColor="{StaticResource AppText}"
+                                VerticalOptions="Center" />
+
+                        </Grid>
+
+                        <!-- СПОРТ -->
+                        <Grid
+                            ColumnDefinitions="48,*"
+                            ColumnSpacing="12">
+
+                            <Border
+                                WidthRequest="46"
+                                HeightRequest="46"
+                                BackgroundColor="{StaticResource LightCyan}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Label
+                                    Text="🏃"
+                                    FontSize="23"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                            </Border>
+
+                            <Label
+                                Grid.Column="1"
+                                Text="Спорт и активный отдых"
+                                FontSize="15"
+                                TextColor="{StaticResource AppText}"
+                                VerticalOptions="Center" />
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- КНОПКИ НАВИГАЦИИ -->
+                <VerticalStackLayout Spacing="12">
+
+                    <Button
+                        x:Name="LoginButton"
+                        Text="💜 Войти"
+                        HeightRequest="56"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        BackgroundColor="{StaticResource BrandPurple}"
+                        TextColor="White"
+                        CornerRadius="16"
+                        Clicked="OnLoginClicked" />
+
+                    <Button
+                        x:Name="RegisterButton"
+                        Text="Создать аккаунт"
+                        HeightRequest="56"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        BackgroundColor="White"
+                        TextColor="{StaticResource BrandPurple}"
+                        BorderColor="{StaticResource BrandPurple}"
+                        BorderWidth="1"
+                        CornerRadius="16"
+                        Clicked="OnRegisterClicked" />
+
+                </VerticalStackLayout>
+
+                <Label
+                    Text="✨ Найди клуб, который тебе по душе."
+                    FontSize="12"
+                    TextColor="{StaticResource AppTextSecondary}"
+                    HorizontalTextAlignment="Center" />
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

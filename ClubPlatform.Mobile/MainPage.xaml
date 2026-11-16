@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ClubPlatform.Mobile.MainPage"
+    Title="Проверка API">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="18"
+            VerticalOptions="Center">
+
+            <Label
+                Text="Клубная платформа"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center" />
+
+            <Label
+                Text="Проверим подключение Android-приложения к серверу."
+                FontSize="16"
+                HorizontalTextAlignment="Center" />
+
+            <Button
+                x:Name="CheckApiButton"
+                Text="Проверить подключение к API"
+                Clicked="OnCheckApiClicked" />
+
+            <ActivityIndicator
+                x:Name="LoadingIndicator"
+                IsRunning="False"
+                IsVisible="False" />
+
+            <Label
+                x:Name="StatusLabel"
+                Text="Нажми кнопку, чтобы проверить соединение."
+                FontSize="15"
+                HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

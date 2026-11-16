@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Clubs.ChatPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Чат клуба"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <!-- Кнопка жалобы остаётся в верхней панели -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Пожаловаться"
+            Order="Primary"
+            Priority="0"
+            Clicked="OnReportSelectedClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid
+        RowDefinitions="Auto,*,Auto,Auto"
+        RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ШАПКА ЧАТА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,22,22"
+            Padding="18,18,18,16">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.75" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="8">
+
+                <Label
+                    Text="💬 СВОИ ЛЮДИ"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    x:Name="ClubNameLabel"
+                    Text="Чат клуба"
+                    FontSize="23"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    LineBreakMode="WordWrap" />
+
+                <Label
+                    Text="Общайся с участниками клуба"
+                    FontSize="13"
+                    TextColor="#F0E9FF" />
+
+                <!-- Подсказка для выбора жалобы -->
+                <Border
+                    BackgroundColor="#EEE8FF"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="10,8">
+
+                    <Label
+                        x:Name="SelectionLabel"
+                        Text="Нажми на сообщение, чтобы выбрать его для жалобы"
+                        FontSize="12"
+                        TextColor="{StaticResource BrandPurple}"
+                        LineBreakMode="WordWrap" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- ИСТОРИЯ СООБЩЕНИЙ -->
+        <!-- ================================= -->
+
+        <CollectionView
+            x:Name="MessagesCollection"
+            ItemsUpdatingScrollMode="KeepLastItemInView"
+            Grid.Row="1"
+            Margin="14,12,14,0"
+            SelectionMode="None">
+
+            <CollectionView.EmptyView>
+
+                <VerticalStackLayout
+                    Padding="20"
+                    Spacing="10"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="💌"
+                        FontSize="40"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Пока нет сообщений"
+                        FontSize="19"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource BrandBlue}" />
+
+                    <Label
+                        Text="Начни разговор первым!"
+                        FontSize="14"
+                        HorizontalTextAlignment="Center"
+                        TextColor="{StaticResource AppTextSecondary}" />
+
+                </VerticalStackLayout>
+
+            </CollectionView.EmptyView>
+
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid
+            Margin="0,0,0,12"
+            ColumnDefinitions="*,*">
+
+                        <!-- Сообщение -->
+                        <Border
+                Grid.ColumnSpan="2"
+                HorizontalOptions="{Binding BubbleAlignment}"
+                MaximumWidthRequest="300"
+                MinimumWidthRequest="130"
+                Padding="14,12"
+                BackgroundColor="{Binding BubbleColor}"
+                Stroke="{StaticResource AppBorder}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 18">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                        Tapped="OnMessageTapped" />
+                            </Border.GestureRecognizers>
+
+                            <VerticalStackLayout Spacing="7">
+
+                                <!-- Автор сообщения -->
+                                <Label
+                        Text="{Binding AuthorDisplayText}"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        TextColor="{Binding AuthorTextColor}"
+                        LineBreakMode="WordWrap" />
+
+                                <!-- Содержимое -->
+                                <Label
+                        Text="{Binding DisplayContent}"
+                        FontSize="15"
+                        TextColor="{Binding MessageTextColor}"
+                        LineBreakMode="WordWrap" />
+
+                                <!-- Время отправки -->
+                                <Label
+                        Text="{Binding TimeText}"
+                        FontSize="11"
+                        TextColor="{Binding TimeColor}"
+                        HorizontalTextAlignment="End" />
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+
+        </CollectionView>
+
+        <!-- ================================= -->
+        <!-- СТАТУС СОЕДИНЕНИЯ -->
+        <!-- ================================= -->
+
+        <Label
+            x:Name="StatusLabel"
+            Grid.Row="2"
+            Text="Подключаемся к чату..."
+            FontSize="12"
+            TextColor="{StaticResource AppTextSecondary}"
+            Margin="18,6,18,8" />
+
+        <!-- ================================= -->
+        <!-- ПОЛЕ ВВОДА И ОТПРАВКА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="3"
+            BackgroundColor="White"
+            StrokeThickness="0"
+            Padding="12,10,12,12">
+
+            <Grid
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
+
+                <!-- Поле ввода -->
+                <Border
+                    Grid.Column="0"
+                    BackgroundColor="{StaticResource AppBackground}"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 18"
+                    Padding="10,0">
+
+                    <Entry
+                        x:Name="MessageEntry"
+                        Placeholder="Напиши сообщение..."
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource AppText}"
+                        PlaceholderColor="{StaticResource AppTextSecondary}"
+                        ReturnType="Send"
+                        Completed="OnMessageCompleted" />
+
+                </Border>
+
+                <!-- Отправка -->
+                <Button
+                    x:Name="SendButton"
+                    Grid.Column="1"
+                    Text="➤"
+                    FontSize="22"
+                    WidthRequest="52"
+                    HeightRequest="52"
+                    Padding="0"
+                    BackgroundColor="{StaticResource BrandPurple}"
+                    TextColor="White"
+                    CornerRadius="18"
+                    Clicked="OnSendClicked" />
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

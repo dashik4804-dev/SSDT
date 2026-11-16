@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Admin.MutedUsersPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Ограничения пользователей"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            Padding="20,22,20,22"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,24,24">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="🛡️ СВОИ ЛЮДИ · ADMIN"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Ограничения пользователей"
+                    FontSize="25"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    LineBreakMode="WordWrap" />
+
+                <Label
+                    Text="Управляй блокировками и безопасностью клубов 💜"
+                    FontSize="14"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- ОСНОВНАЯ ЧАСТЬ -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="1"
+            Padding="16,16,16,0"
+            RowDefinitions="Auto,Auto,Auto,*"
+            RowSpacing="14">
+
+            <!-- ВЫБОР КЛУБА -->
+            <Border
+                Grid.Row="0"
+                Padding="14"
+                BackgroundColor="White"
+                Stroke="{StaticResource AppBorder}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 18">
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label
+                        Text="🏘️ Выбери клуб"
+                        FontSize="17"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource BrandBlue}" />
+
+                    <Picker
+                        x:Name="ClubPicker"
+                        Title="Выбери клуб"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedIndexChanged="OnClubPickerSelectedIndexChanged"
+                        BackgroundColor="{StaticResource AppBackground}"
+                        TextColor="{StaticResource AppText}"
+                        TitleColor="{StaticResource AppTextSecondary}" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- ================================= -->
+            <!-- ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК -->
+            <!-- ================================= -->
+
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10">
+
+                <Button
+                    x:Name="MutedTabButton"
+                    Grid.Column="0"
+                    Text="🔇 Запрет писать"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    HeightRequest="48"
+                    Padding="5,8"
+                    BackgroundColor="{StaticResource BrandPurple}"
+                    TextColor="White"
+                    CornerRadius="14"
+                    Clicked="OnMutedTabClicked" />
+
+                <Button
+                    x:Name="RemovedTabButton"
+                    Grid.Column="1"
+                    Text="🚫 Исключённые"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    HeightRequest="48"
+                    Padding="5,8"
+                    BackgroundColor="{StaticResource LightPurple}"
+                    TextColor="{StaticResource BrandPurple}"
+                    CornerRadius="14"
+                    Clicked="OnRemovedTabClicked" />
+
+            </Grid>
+
+            <!-- ================================= -->
+            <!-- СТАТУС И ОБНОВЛЕНИЕ -->
+            <!-- ================================= -->
+
+            <Grid
+                Grid.Row="2"
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
+
+                <Label
+                    x:Name="StatusLabel"
+                    Text="Загружаем список..."
+                    FontSize="13"
+                    TextColor="{StaticResource AppTextSecondary}"
+                    VerticalOptions="Center"
+                    LineBreakMode="WordWrap" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="↻ Обновить"
+                    HeightRequest="40"
+                    Padding="12,6"
+                    FontSize="12"
+                    BackgroundColor="{StaticResource LightCyan}"
+                    TextColor="#087CA3"
+                    CornerRadius="14"
+                    Clicked="OnRefreshClicked" />
+
+            </Grid>
+
+            <!-- ================================= -->
+            <!-- ПОЛЬЗОВАТЕЛИ С ЗАПРЕТОМ ПИСАТЬ -->
+            <!-- ================================= -->
+
+            <CollectionView
+                x:Name="MutedUsersCollection"
+                Grid.Row="3"
+                SelectionMode="None">
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="20,40"
+                        Spacing="12">
+
+                        <Label
+                            Text="🔇"
+                            FontSize="44"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Ограничений нет"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="В выбранном клубе нет участников с запретом отправлять сообщения."
+                            FontSize="14"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,14"
+                            Padding="16"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <VerticalStackLayout Spacing="12">
+
+                                <!-- ИМЯ -->
+                                <Label
+                                    Text="{Binding UserName}"
+                                    FontSize="19"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource BrandBlue}" />
+
+                                <!-- КЛУБ -->
+                                <Label
+                                    Text="{Binding ClubName, StringFormat='🏘️ Клуб: {0}'}"
+                                    FontSize="13"
+                                    TextColor="{StaticResource AppTextSecondary}" />
+
+                                <!-- ОГРАНИЧЕНИЕ -->
+                                <Border
+                                    Padding="12,10"
+                                    BackgroundColor="#FFE3E8"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12">
+
+                                    <Label
+                                        Text="🔇 Запрещено отправлять сообщения"
+                                        FontSize="13"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource ErrorColor}"
+                                        LineBreakMode="WordWrap" />
+
+                                </Border>
+
+                                <!-- ДАТА ВСТУПЛЕНИЯ -->
+                                <Label
+                                    Text="{Binding JoinedAt, StringFormat='Участник с {0:dd.MM.yyyy}'}"
+                                    FontSize="12"
+                                    TextColor="{StaticResource AppTextSecondary}" />
+
+                                <!-- СНЯТЬ ЗАПРЕТ -->
+                                <Button
+                                    Text="✓ Разрешить писать"
+                                    HeightRequest="48"
+                                    FontAttributes="Bold"
+                                    BackgroundColor="{StaticResource LightCyan}"
+                                    TextColor="#087CA3"
+                                    CornerRadius="14"
+                                    Clicked="OnUnmuteClicked" />
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <!-- ================================= -->
+            <!-- ИСКЛЮЧЁННЫЕ ПОЛЬЗОВАТЕЛИ -->
+            <!-- ================================= -->
+
+            <CollectionView
+                x:Name="RemovedUsersCollection"
+                Grid.Row="3"
+                SelectionMode="None"
+                IsVisible="False">
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="20,40"
+                        Spacing="12">
+
+                        <Label
+                            Text="🚫"
+                            FontSize="44"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Исключённых пользователей нет"
+                            FontSize="19"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="В выбранном клубе пока никого не исключали."
+                            FontSize="14"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,14"
+                            Padding="16"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <VerticalStackLayout Spacing="12">
+
+                                <!-- ИМЯ -->
+                                <Label
+                                    Text="{Binding UserName}"
+                                    FontSize="19"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource BrandBlue}" />
+
+                                <!-- ПРИЧИНА -->
+                                <Border
+                                    Padding="12"
+                                    BackgroundColor="{StaticResource AppBackground}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12">
+
+                                    <Label
+                                        Text="{Binding Reason}"
+                                        FontSize="14"
+                                        TextColor="{StaticResource AppText}"
+                                        LineBreakMode="WordWrap" />
+
+                                </Border>
+
+                                <!-- ДАТА -->
+                                <Label
+                                    Text="{Binding CreatedAtText, StringFormat='Удалён из клуба: {0}'}"
+                                    FontSize="12"
+                                    TextColor="{StaticResource AppTextSecondary}" />
+
+                                <!-- СТАТУС БЛОКИРОВКИ -->
+                                <Border
+                                    Padding="12,10"
+                                    BackgroundColor="#FFE3E8"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12">
+
+                                    <Label
+                                        Text="🚫 Повторное вступление запрещено"
+                                        FontSize="13"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource ErrorColor}"
+                                        LineBreakMode="WordWrap" />
+
+                                </Border>
+
+                                <!-- РАЗБЛОКИРОВКА -->
+                                <Button
+                                    Text="✓ Разблокировать пользователя"
+                                    HeightRequest="48"
+                                    FontAttributes="Bold"
+                                    BackgroundColor="{StaticResource LightCyan}"
+                                    TextColor="#087CA3"
+                                    CornerRadius="14"
+                                    Clicked="OnUnbanClicked" />
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

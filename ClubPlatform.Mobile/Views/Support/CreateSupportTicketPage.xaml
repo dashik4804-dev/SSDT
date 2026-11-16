@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Support.CreateSupportTicketPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Обращение в поддержку"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <Border
+            Grid.Row="0"
+            Padding="20,22,20,22"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,24,24">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="💌 СВОИ ЛЮДИ · ПОДДЕРЖКА"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Служба поддержки"
+                    FontSize="27"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Есть вопрос? Мы всегда рядом и готовы помочь 💜"
+                    FontSize="14"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ПРОКРУЧИВАЕМАЯ ФОРМА -->
+        <ScrollView Grid.Row="1">
+
+            <VerticalStackLayout
+                Padding="16,20,16,28"
+                Spacing="18">
+
+                <!-- ИНФОРМАЦИОННЫЙ БЛОК -->
+                <Border
+                    Padding="16"
+                    BackgroundColor="{StaticResource LightPurple}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 18">
+
+                    <VerticalStackLayout Spacing="9">
+
+                        <Label
+                            Text="💜 Мы тебя слышим!"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <Label
+                            Text="Расскажи, что произошло, или задай вопрос. Команда поддержки рассмотрит обращение и ответит тебе."
+                            FontSize="14"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- КАРТОЧКА ФОРМЫ -->
+                <Border
+                    Padding="16"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20">
+
+                    <VerticalStackLayout Spacing="16">
+
+                        <Label
+                            Text="✍️ Новое обращение"
+                            FontSize="19"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <!-- ТЕМА -->
+                        <VerticalStackLayout Spacing="7">
+
+                            <Label
+                                Text="Тема обращения"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Border
+                                Padding="10,3"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                Stroke="{StaticResource AppBorder}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Entry
+                                    x:Name="SubjectEntry"
+                                    Placeholder="Например, проблема с клубом"
+                                    MaxLength="150"
+                                    Keyboard="Text"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{StaticResource AppText}"
+                                    PlaceholderColor="{StaticResource AppTextSecondary}" />
+
+                            </Border>
+
+                            <Label
+                                Text="Коротко опиши, с чем связан вопрос."
+                                FontSize="12"
+                                TextColor="{StaticResource AppTextSecondary}" />
+
+                        </VerticalStackLayout>
+
+                        <!-- СООБЩЕНИЕ -->
+                        <VerticalStackLayout Spacing="7">
+
+                            <Label
+                                Text="Твоё сообщение"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Border
+                                Padding="10"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                Stroke="{StaticResource AppBorder}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Editor
+                                    x:Name="MessageEditor"
+                                    Placeholder="Подробно опиши свою проблему или вопрос..."
+                                    AutoSize="TextChanges"
+                                    MinimumHeightRequest="150"
+                                    MaxLength="4000"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{StaticResource AppText}"
+                                    PlaceholderColor="{StaticResource AppTextSecondary}" />
+
+                            </Border>
+
+                            <!-- СЧЁТЧИК СИМВОЛОВ -->
+                            <Label
+                                x:Name="CounterLabel"
+                                Text="0 / 4000"
+                                FontSize="12"
+                                TextColor="{StaticResource AppTextSecondary}"
+                                HorizontalOptions="End" />
+
+                        </VerticalStackLayout>
+
+                        <!-- ОТПРАВКА -->
+                        <Button
+                            x:Name="SendButton"
+                            Text="💜 Отправить обращение"
+                            Clicked="OnSendClicked"
+                            BackgroundColor="{StaticResource BrandPurple}"
+                            TextColor="White"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            HeightRequest="52" />
+
+                        <!-- ЗАГРУЗКА -->
+                        <ActivityIndicator
+                            x:Name="LoadingIndicator"
+                            IsRunning="False"
+                            IsVisible="False"
+                            Color="{StaticResource BrandPurple}"
+                            HorizontalOptions="Center" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- НИЖНЯЯ ПОДСКАЗКА -->
+                <Label
+                    Text="💌 После отправки ты сможешь посмотреть статус обращения и ответ администрации в разделе «Мои обращения»."
+                    FontSize="12"
+                    TextColor="{StaticResource AppTextSecondary}"
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="WordWrap"
+                    Margin="8,0" />
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

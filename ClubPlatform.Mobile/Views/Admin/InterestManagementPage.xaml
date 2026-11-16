@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Admin.InterestManagementPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Управление интересами"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            Padding="20,22,20,22"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,24,24">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="🎯 СВОИ ЛЮДИ · ADMIN"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Управление интересами"
+                    FontSize="25"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    LineBreakMode="WordWrap" />
+
+                <Label
+                    Text="Помогай участникам находить единомышленников 💜"
+                    FontSize="14"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- ОСНОВНАЯ ЧАСТЬ -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="1"
+            Padding="16,16,16,0"
+            RowDefinitions="Auto,Auto,*"
+            RowSpacing="14">
+
+            <!-- ФОРМА СОЗДАНИЯ И РЕДАКТИРОВАНИЯ -->
+            <Border
+                Grid.Row="0"
+                Padding="16"
+                BackgroundColor="White"
+                Stroke="{StaticResource AppBorder}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 20">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        x:Name="FormTitleLabel"
+                        Text="✨ Новый интерес"
+                        FontSize="19"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource BrandBlue}" />
+
+                    <VerticalStackLayout Spacing="6">
+
+                        <Label
+                            Text="Название интереса"
+                            FontSize="13"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource AppText}" />
+
+                        <Entry
+                            x:Name="NameEntry"
+                            Placeholder="Например, Фотография"
+                            MaxLength="100"
+                            Keyboard="Text"
+                            BackgroundColor="{StaticResource AppBackground}"
+                            TextColor="{StaticResource AppText}" />
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+
+                        <Label
+                            Text="Эмодзи"
+                            FontSize="13"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource AppText}" />
+
+                        <Entry
+                            x:Name="EmojiEntry"
+                            Placeholder="Например, 📷"
+                            MaxLength="20"
+                            BackgroundColor="{StaticResource AppBackground}"
+                            TextColor="{StaticResource AppText}" />
+
+                    </VerticalStackLayout>
+
+                    <!-- КНОПКИ ФОРМЫ -->
+                    <VerticalStackLayout Spacing="8">
+
+                        <Button
+                            x:Name="SaveButton"
+                            Text="Добавить интерес"
+                            HeightRequest="48"
+                            BackgroundColor="{StaticResource BrandPurple}"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="14"
+                            Clicked="OnSaveClicked" />
+
+                        <Button
+                            x:Name="CancelEditButton"
+                            Text="Отмена редактирования"
+                            HeightRequest="44"
+                            BackgroundColor="{StaticResource LightPurple}"
+                            TextColor="{StaticResource BrandPurple}"
+                            CornerRadius="14"
+                            IsVisible="False"
+                            Clicked="OnCancelEditClicked" />
+
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- СТАТУС И ОБНОВЛЕНИЕ -->
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
+
+                <Label
+                    x:Name="StatusLabel"
+                    Text="Загружаем интересы..."
+                    FontSize="13"
+                    TextColor="{StaticResource AppTextSecondary}"
+                    VerticalOptions="Center"
+                    LineBreakMode="WordWrap" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="↻ Обновить"
+                    HeightRequest="40"
+                    Padding="12,6"
+                    FontSize="12"
+                    BackgroundColor="{StaticResource LightCyan}"
+                    TextColor="#087CA3"
+                    CornerRadius="14"
+                    Clicked="OnRefreshClicked" />
+
+            </Grid>
+
+            <!-- ================================= -->
+            <!-- СПИСОК ИНТЕРЕСОВ -->
+            <!-- ================================= -->
+
+            <CollectionView
+                x:Name="InterestsCollection"
+                Grid.Row="2"
+                SelectionMode="None">
+
+                <CollectionView.EmptyView>
+
+                    <VerticalStackLayout
+                        Padding="20,35"
+                        Spacing="12">
+
+                        <Label
+                            Text="🎯"
+                            FontSize="44"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Интересов пока нет"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Добавь первый интерес с помощью формы выше."
+                            FontSize="14"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,12"
+                            Padding="14"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 18">
+
+                            <VerticalStackLayout Spacing="12">
+
+                                <!-- ЭМОДЗИ И НАЗВАНИЕ -->
+                                <Grid
+                                    ColumnDefinitions="52,*"
+                                    ColumnSpacing="12">
+
+                                    <Border
+                                        Grid.Column="0"
+                                        HeightRequest="50"
+                                        WidthRequest="50"
+                                        BackgroundColor="{StaticResource LightPurple}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 14">
+
+                                        <Label
+                                            Text="{Binding Emoji}"
+                                            FontSize="25"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+
+                                    </Border>
+
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding Name}"
+                                        FontSize="17"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource AppText}"
+                                        VerticalOptions="Center"
+                                        LineBreakMode="WordWrap" />
+
+                                </Grid>
+
+                                <!-- ДЕЙСТВИЯ -->
+                                <Grid
+                                    ColumnDefinitions="*,*"
+                                    ColumnSpacing="10">
+
+                                    <Button
+                                        Grid.Column="0"
+                                        Text="✏️ Изменить"
+                                        HeightRequest="44"
+                                        Padding="6,8"
+                                        FontSize="13"
+                                        BackgroundColor="{StaticResource LightPurple}"
+                                        TextColor="{StaticResource BrandPurple}"
+                                        CornerRadius="13"
+                                        Clicked="OnEditClicked" />
+
+                                    <Button
+                                        Grid.Column="1"
+                                        Text="Удалить"
+                                        HeightRequest="44"
+                                        Padding="6,8"
+                                        FontSize="13"
+                                        BackgroundColor="#FFE3E8"
+                                        TextColor="{StaticResource ErrorColor}"
+                                        CornerRadius="13"
+                                        Clicked="OnDeleteClicked" />
+
+                                </Grid>
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

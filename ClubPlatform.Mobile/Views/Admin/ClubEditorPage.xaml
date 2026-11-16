@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Admin.ClubEditorPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Клуб"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Градиентная шапка -->
+            <Border
+                Padding="20,22,20,24"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 0,0,24,24">
+
+                <Border.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="1,1">
+
+                        <GradientStop
+                            Color="{StaticResource BrandBlue}"
+                            Offset="0" />
+
+                        <GradientStop
+                            Color="{StaticResource BrandPurple}"
+                            Offset="0.7" />
+
+                        <GradientStop
+                            Color="{StaticResource BrandPink}"
+                            Offset="1" />
+
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label
+                        Text="🏘️ СВОИ ЛЮДИ · ADMIN"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="#EDE4FF" />
+
+                    <Label
+                        x:Name="PageTitle"
+                        Text="Новый клуб"
+                        FontSize="27"
+                        FontAttributes="Bold"
+                        TextColor="White" />
+
+                    <Label
+                        Text="Создавай пространство, где люди находят единомышленников 💜"
+                        FontSize="14"
+                        TextColor="#F0E9FF"
+                        LineBreakMode="WordWrap" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <VerticalStackLayout
+                Padding="16,20,16,30"
+                Spacing="18">
+
+                <!-- Фотография клуба -->
+                <Border
+                    Padding="14"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="📸 Фотография клуба"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <Border
+                            HeightRequest="190"
+                            BackgroundColor="{StaticResource LightPurple}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 16">
+
+                            <Grid>
+
+                                <Label
+                                    Text="📷"
+                                    FontSize="42"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <Image
+                                    x:Name="PhotoPreview"
+                                    Aspect="AspectFill"
+                                    HeightRequest="190" />
+
+                            </Grid>
+
+                        </Border>
+
+                        <Button
+                            Text="📷 Выбрать фотографию"
+                            HeightRequest="48"
+                            BackgroundColor="{StaticResource LightPurple}"
+                            TextColor="{StaticResource BrandPurple}"
+                            FontAttributes="Bold"
+                            CornerRadius="14"
+                            Clicked="OnChoosePhotoClicked" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- Основная информация -->
+                <Border
+                    Padding="16"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20">
+
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label
+                            Text="✨ Основная информация"
+                            FontSize="19"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <VerticalStackLayout Spacing="6">
+
+                            <Label
+                                Text="Название клуба"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Entry
+                                x:Name="NameEntry"
+                                Placeholder="Например, Книжный клуб"
+                                MaxLength="150"
+                                Keyboard="Text"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                TextColor="{StaticResource AppText}" />
+
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="6">
+
+                            <Label
+                                Text="Описание"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Editor
+                                x:Name="DescriptionEditor"
+                                Placeholder="Расскажи о клубе и его участниках"
+                                AutoSize="TextChanges"
+                                MinimumHeightRequest="110"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                TextColor="{StaticResource AppText}" />
+
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="6">
+
+                            <Label
+                                Text="📍 Адрес в Москве"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Entry
+                                x:Name="AddressEntry"
+                                Placeholder="Улица, дом, помещение"
+                                MaxLength="500"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                TextColor="{StaticResource AppText}" />
+
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- Контактные данные -->
+                <Border
+                    Padding="16"
+                    BackgroundColor="{StaticResource LightCyan}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 20">
+
+                    <VerticalStackLayout Spacing="14">
+
+                        <Label
+                            Text="📞 Контактная информация"
+                            FontSize="19"
+                            FontAttributes="Bold"
+                            TextColor="#087CA3" />
+
+                        <Label
+                            Text="Эти поля можно оставить пустыми."
+                            FontSize="13"
+                            TextColor="{StaticResource AppTextSecondary}" />
+
+                        <VerticalStackLayout Spacing="6">
+
+                            <Label
+                                Text="Телефон"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Entry
+                                x:Name="PhoneEntry"
+                                Placeholder="+7 ..."
+                                Keyboard="Telephone"
+                                MaxLength="30"
+                                BackgroundColor="White"
+                                TextColor="{StaticResource AppText}" />
+
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Spacing="6">
+
+                            <Label
+                                Text="Email"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Entry
+                                x:Name="EmailEntry"
+                                Placeholder="club@example.com"
+                                Keyboard="Email"
+                                MaxLength="320"
+                                BackgroundColor="White"
+                                TextColor="{StaticResource AppText}" />
+
+                        </VerticalStackLayout>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- Количество участников -->
+                <Border
+                    Padding="16"
+                    BackgroundColor="{StaticResource LightOrange}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 20">
+
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label
+                            Text="👥 Количество участников"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#95530D" />
+
+                        <Label
+                            Text="Укажи максимальное количество участников клуба."
+                            FontSize="13"
+                            TextColor="{StaticResource AppTextSecondary}" />
+
+                        <Entry
+                            x:Name="MaxMembersEntry"
+                            Placeholder="Пусто — без ограничения"
+                            Keyboard="Numeric"
+                            MaxLength="9"
+                            BackgroundColor="White"
+                            TextColor="{StaticResource AppText}" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- Интересы клуба -->
+                <Border
+                    Padding="16"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="💜 Интересы клуба"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandPurple}" />
+
+                        <Label
+                            Text="Отметь один или несколько интересов."
+                            FontSize="13"
+                            TextColor="{StaticResource AppTextSecondary}" />
+
+                        <Border
+                            Padding="12"
+                            BackgroundColor="{StaticResource AppBackground}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 14">
+
+                            <VerticalStackLayout
+                                x:Name="InterestsLayout"
+                                Spacing="10" />
+
+                        </Border>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- Статус сохранения -->
+                <Label
+                    x:Name="StatusLabel"
+                    FontSize="13"
+                    TextColor="{StaticResource AppTextSecondary}"
+                    LineBreakMode="WordWrap" />
+
+                <!-- Сохранение -->
+                <Button
+                    x:Name="SaveButton"
+                    Text="💜 Сохранить клуб"
+                    HeightRequest="56"
+                    BackgroundColor="{StaticResource BrandPurple}"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="17"
+                    Clicked="OnSaveClicked" />
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

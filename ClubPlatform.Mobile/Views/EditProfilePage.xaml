@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.EditProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Редактирование профиля"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            Padding="20,22,20,22"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,24,24">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="✨ СВОИ ЛЮДИ · ПРОФИЛЬ"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Редактирование профиля"
+                    FontSize="25"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    LineBreakMode="WordWrap" />
+
+                <Label
+                    Text="Расскажи о себе, чтобы свои люди узнали тебя лучше 💜"
+                    FontSize="14"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- ПРОКРУЧИВАЕМОЕ СОДЕРЖИМОЕ -->
+        <!-- ================================= -->
+
+        <ScrollView Grid.Row="1">
+
+            <VerticalStackLayout
+                Padding="16,20,16,30"
+                Spacing="18">
+
+                <!-- ================================= -->
+                <!-- ФОТОГРАФИЯ -->
+                <!-- ================================= -->
+
+                <Border
+                    Padding="20"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 24">
+
+                    <VerticalStackLayout
+                        Spacing="13"
+                        HorizontalOptions="Fill">
+
+                        <Label
+                            Text="📸 Твоя фотография"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}"
+                            HorizontalTextAlignment="Center" />
+
+                        <!-- АВАТАР -->
+                        <Border
+                            WidthRequest="132"
+                            HeightRequest="132"
+                            Padding="0"
+                            HorizontalOptions="Center"
+                            BackgroundColor="{StaticResource LightPurple}"
+                            Stroke="{StaticResource BrandPurple}"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 66">
+
+                            <Grid>
+
+                                <Label
+                                    Text="👤"
+                                    FontSize="52"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <Image
+                                    x:Name="PhotoPreview"
+                                    Aspect="AspectFill"
+                                    WidthRequest="128"
+                                    HeightRequest="128" />
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- ВЫБОР ФОТО -->
+                        <Button
+                            Text="📸 Изменить фотографию"
+                            HeightRequest="48"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            BackgroundColor="{StaticResource LightPurple}"
+                            TextColor="{StaticResource BrandPurple}"
+                            CornerRadius="14"
+                            Clicked="OnChoosePhotoClicked" />
+
+                        <Label
+                            Text="Поддерживаемые форматы: JPG, PNG, WebP. Максимальный размер — 10 МБ."
+                            FontSize="12"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ================================= -->
+                <!-- ЛИЧНАЯ ИНФОРМАЦИЯ -->
+                <!-- ================================= -->
+
+                <Border
+                    Padding="16"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 22">
+
+                    <VerticalStackLayout Spacing="16">
+
+                        <Label
+                            Text="👤 Личная информация"
+                            FontSize="19"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <!-- ИМЯ -->
+                        <VerticalStackLayout Spacing="7">
+
+                            <Label
+                                Text="Имя"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Border
+                                Padding="10,3"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                Stroke="{StaticResource AppBorder}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Entry
+                                    x:Name="NameEntry"
+                                    Placeholder="Твоё имя"
+                                    Keyboard="Text"
+                                    MaxLength="100"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{StaticResource AppText}"
+                                    PlaceholderColor="{StaticResource AppTextSecondary}" />
+
+                            </Border>
+
+                        </VerticalStackLayout>
+
+                        <!-- ВОЗРАСТ -->
+                        <VerticalStackLayout Spacing="7">
+
+                            <Label
+                                Text="Возраст"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Border
+                                Padding="10,3"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                Stroke="{StaticResource AppBorder}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Entry
+                                    x:Name="AgeEntry"
+                                    Placeholder="Например, 25"
+                                    Keyboard="Numeric"
+                                    MaxLength="3"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{StaticResource AppText}"
+                                    PlaceholderColor="{StaticResource AppTextSecondary}" />
+
+                            </Border>
+
+                        </VerticalStackLayout>
+
+                        <!-- ПОЛ -->
+                        <VerticalStackLayout Spacing="7">
+
+                            <Label
+                                Text="Пол"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Border
+                                Padding="10,3"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                Stroke="{StaticResource AppBorder}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Picker
+                                    x:Name="GenderPicker"
+                                    Title="Выбери пол"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{StaticResource AppText}"
+                                    TitleColor="{StaticResource AppTextSecondary}" />
+
+                            </Border>
+
+                        </VerticalStackLayout>
+
+                        <!-- ПОДСКАЗКА -->
+                        <Border
+                            Padding="12"
+                            BackgroundColor="{StaticResource LightPurple}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12">
+
+                            <Label
+                                Text="🔒 Email и роль нельзя изменить на этой странице."
+                                FontSize="12"
+                                TextColor="{StaticResource BrandPurple}"
+                                LineBreakMode="WordWrap" />
+
+                        </Border>
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ================================= -->
+                <!-- СОХРАНЕНИЕ -->
+                <!-- ================================= -->
+
+                <Border
+                    Padding="16"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="💜 Всё готово?"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <Label
+                            Text="Проверь данные и сохрани изменения, чтобы обновить свой профиль."
+                            FontSize="13"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- СТАТУС -->
+                        <Label
+                            x:Name="StatusLabel"
+                            FontSize="13"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- СОХРАНИТЬ -->
+                        <Button
+                            x:Name="SaveButton"
+                            Text="💜 Сохранить изменения"
+                            HeightRequest="54"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            BackgroundColor="{StaticResource BrandPurple}"
+                            TextColor="White"
+                            CornerRadius="16"
+                            Clicked="OnSaveClicked" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

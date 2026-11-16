@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Admin.AdminPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Жалобы"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ШАПКА РАЗДЕЛА МОДЕРАЦИИ -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            StrokeThickness="0"
+            Padding="20,22,20,20">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0,0,24,24" />
+            </Border.StrokeShape>
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="🛡️ СВОИ ЛЮДИ · МОДЕРАЦИЯ"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Жалобы пользователей"
+                    FontSize="25"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    LineBreakMode="WordWrap" />
+
+                <Label
+                    Text="Поддерживай безопасность и дружелюбную атмосферу 💜"
+                    FontSize="13"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- СПИСОК ЖАЛОБ -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="1"
+            Padding="16,16,16,0"
+            RowDefinitions="Auto,*"
+            RowSpacing="14">
+
+            <!-- Статус загрузки и обновление -->
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
+
+                <Label
+                    x:Name="StatusLabel"
+                    Text="Загрузка жалоб..."
+                    FontSize="14"
+                    VerticalOptions="Center"
+                    TextColor="{StaticResource AppTextSecondary}" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="↻ Обновить"
+                    FontSize="12"
+                    Padding="14,6"
+                    HeightRequest="40"
+                    BackgroundColor="{StaticResource LightCyan}"
+                    TextColor="#087CA3"
+                    CornerRadius="14"
+                    Clicked="OnRefreshClicked" />
+
+            </Grid>
+
+            <!-- Карточки жалоб -->
+            <CollectionView
+                x:Name="ReportsCollection"
+                Grid.Row="1"
+                SelectionMode="None">
+
+                <!-- Пустой список -->
+                <CollectionView.EmptyView>
+
+                    <VerticalStackLayout
+                        Padding="20,45"
+                        Spacing="12"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="🎉"
+                            FontSize="45"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Жалоб пока нет"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <Label
+                            Text="Новые жалобы пользователей появятся здесь."
+                            FontSize="14"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </CollectionView.EmptyView>
+
+                <!-- ================================= -->
+                <!-- КАРТОЧКА ОДНОЙ ЖАЛОБЫ -->
+                <!-- ================================= -->
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,16"
+                            Padding="16"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <VerticalStackLayout Spacing="12">
+
+                                <!-- Название клуба -->
+                                <Label
+                                    Text="{Binding ClubName}"
+                                    FontSize="19"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource BrandBlue}"
+                                    LineBreakMode="WordWrap" />
+
+                                <!-- Статус жалобы -->
+                                <Border
+                                    BackgroundColor="{StaticResource LightOrange}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12"
+                                    Padding="10,7"
+                                    HorizontalOptions="Start">
+
+                                    <Label
+                                        Text="{Binding Status}"
+                                        FontSize="12"
+                                        FontAttributes="Bold"
+                                        TextColor="#95530D" />
+
+                                </Border>
+
+                                <BoxView
+                                    HeightRequest="1"
+                                    Color="{StaticResource AppBorder}" />
+
+                                <!-- Причина -->
+                                <Label
+                                    Text="⚠️ Причина жалобы"
+                                    FontSize="13"
+                                    FontAttributes="Bold"
+                                    TextColor="#A91A79" />
+
+                                <Label
+                                    Text="{Binding Reason}"
+                                    FontSize="15"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource AppText}"
+                                    LineBreakMode="WordWrap" />
+
+                                <!-- Текст сообщения -->
+                                <Border
+                                    BackgroundColor="{StaticResource AppBackground}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 14"
+                                    Padding="12">
+
+                                    <VerticalStackLayout Spacing="7">
+
+                                        <Label
+                                            Text="Сообщение пользователя"
+                                            FontSize="12"
+                                            TextColor="{StaticResource AppTextSecondary}" />
+
+                                        <Label
+                                            Text="{Binding MessageContent}"
+                                            FontSize="14"
+                                            TextColor="{StaticResource AppText}"
+                                            LineBreakMode="WordWrap" />
+
+                                    </VerticalStackLayout>
+
+                                </Border>
+
+                                <!-- Информация об участниках -->
+                                <Label
+                                    Text="{Binding MessageAuthorName, StringFormat='👤 Автор сообщения: {0}'}"
+                                    FontSize="13"
+                                    TextColor="{StaticResource AppTextSecondary}"
+                                    LineBreakMode="WordWrap" />
+
+                                <Label
+                                    Text="{Binding ReporterName, StringFormat='📩 Жалобу отправил: {0}'}"
+                                    FontSize="13"
+                                    TextColor="{StaticResource AppTextSecondary}"
+                                    LineBreakMode="WordWrap" />
+
+                                <Label
+                                    Text="{Binding MessageCreatedAt, StringFormat='🕒 Сообщение: {0:dd.MM.yyyy HH:mm}'}"
+                                    FontSize="12"
+                                    TextColor="{StaticResource AppTextSecondary}" />
+
+                                <!-- Пометка об удалении -->
+                                <Border
+                                    IsVisible="{Binding IsMessageDeleted}"
+                                    BackgroundColor="#FFE3E8"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12"
+                                    Padding="10,8">
+
+                                    <Label
+                                        Text="🗑️ Сообщение уже удалено"
+                                        FontSize="13"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource ErrorColor}" />
+
+                                </Border>
+
+                                <!-- ================================= -->
+                                <!-- ДЕЙСТВИЯ МОДЕРАЦИИ -->
+                                <!-- ================================= -->
+
+                                <VerticalStackLayout
+                                    Spacing="9"
+                                    Margin="0,8,0,0"
+                                    IsVisible="{Binding IsPending}">
+
+                                    <!-- Удаление сообщения -->
+                                    <Button
+                                        Text="🗑️ Удалить сообщение"
+                                        HeightRequest="48"
+                                        BackgroundColor="{StaticResource ErrorColor}"
+                                        TextColor="White"
+                                        FontSize="14"
+                                        FontAttributes="Bold"
+                                        CornerRadius="15"
+                                        Clicked="OnDeleteMessageClicked" />
+
+                                    <!-- Отклонение жалобы -->
+                                    <Button
+                                        Text="Отклонить жалобу"
+                                        HeightRequest="46"
+                                        BackgroundColor="{StaticResource LightPurple}"
+                                        TextColor="{StaticResource BrandPurple}"
+                                        FontSize="14"
+                                        CornerRadius="15"
+                                        Clicked="OnRejectClicked" />
+
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

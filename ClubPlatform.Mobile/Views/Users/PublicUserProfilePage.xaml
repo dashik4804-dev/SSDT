@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Users.PublicUserProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Профиль пользователя"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            Padding="20,22,20,22"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,24,24">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="💜 СВОИ ЛЮДИ · ЗНАКОМСТВА"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Профиль участника"
+                    FontSize="27"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="У каждого человека своя история ✨"
+                    FontSize="14"
+                    TextColor="#F0E9FF" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- СОДЕРЖИМОЕ ПРОФИЛЯ -->
+        <!-- ================================= -->
+
+        <ScrollView Grid.Row="1">
+
+            <VerticalStackLayout
+                Padding="16,20,16,30"
+                Spacing="18">
+
+                <!-- ================================= -->
+                <!-- КАРТОЧКА ПОЛЬЗОВАТЕЛЯ -->
+                <!-- ================================= -->
+
+                <Border
+                    Padding="20"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 24">
+
+                    <VerticalStackLayout
+                        Spacing="14"
+                        HorizontalOptions="Fill">
+
+                        <!-- ФОТОГРАФИЯ -->
+                        <Border
+                            WidthRequest="124"
+                            HeightRequest="124"
+                            HorizontalOptions="Center"
+                            BackgroundColor="{StaticResource LightPurple}"
+                            Stroke="{StaticResource BrandPurple}"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 62">
+
+                            <Grid>
+
+                                <Label
+                                    Text="👤"
+                                    FontSize="52"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+                                <Image
+                                    x:Name="UserPhoto"
+                                    Aspect="AspectFill"
+                                    WidthRequest="120"
+                                    HeightRequest="120" />
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- ИМЯ -->
+                        <Label
+                            x:Name="UserNameLabel"
+                            Text="Имя пользователя"
+                            FontSize="26"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- ВОЗРАСТ И ПОЛ -->
+                        <FlexLayout
+                            Direction="Row"
+                            Wrap="Wrap"
+                            JustifyContent="Center"
+                            AlignItems="Center">
+
+                            <Border
+                                Margin="4"
+                                Padding="13,8"
+                                BackgroundColor="{StaticResource LightPurple}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 20">
+
+                                <Label
+                                    x:Name="UserAgeLabel"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource BrandPurple}" />
+
+                            </Border>
+
+                            <Border
+                                Margin="4"
+                                Padding="13,8"
+                                BackgroundColor="{StaticResource LightPink}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 20">
+
+                                <Label
+                                    x:Name="UserGenderLabel"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    TextColor="#AD267F" />
+
+                            </Border>
+
+                        </FlexLayout>
+
+                        <!-- ПОДПИСЬ -->
+                        <Label
+                            Text="✨ Участник сообщества «Свои люди»"
+                            FontSize="13"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ================================= -->
+                <!-- КЛУБЫ ПОЛЬЗОВАТЕЛЯ -->
+                <!-- ================================= -->
+
+                <VerticalStackLayout Spacing="13">
+
+                    <Label
+                        Text="🏘️ Клубы пользователя"
+                        FontSize="21"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource BrandBlue}" />
+
+                    <!-- ПУСТОЙ СПИСОК -->
+
+                    <Border
+                        x:Name="ClubsEmptyBorder"
+                        IsVisible="False"
+                        Padding="18"
+                        BackgroundColor="White"
+                        Stroke="{StaticResource AppBorder}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 18">
+
+
+                        <Label
+                            x:Name="ClubsEmptyLabel"
+                            Text="Пользователь пока не состоит ни в одном клубе."
+                            FontSize="14"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center"
+                            IsVisible="False" />
+
+                    </Border>
+
+                    <!-- КАРТОЧКИ КЛУБОВ -->
+                    <VerticalStackLayout
+                        x:Name="ClubsLayout"
+                        Spacing="12" />
+
+                </VerticalStackLayout>
+
+                <!-- ЗАГРУЗКА -->
+                <ActivityIndicator
+                    x:Name="LoadingIndicator"
+                    IsRunning="False"
+                    IsVisible="False"
+                    Color="{StaticResource BrandPurple}"
+                    HorizontalOptions="Center" />
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

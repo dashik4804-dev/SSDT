@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Clubs.ClubsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Клубы Москвы"
+    BackgroundColor="{StaticResource AppBackground}"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ЯРКАЯ ШАПКА КАТАЛОГА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,24,24"
+            Padding="20,22,20,20">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="12">
+
+                <Label
+                    Text="✨ СВОИ ЛЮДИ"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Найди своих людей 💜"
+                    FontSize="25"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Клубы Москвы — общайся, знакомься и находи единомышленников"
+                    FontSize="13"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+                <!-- Поиск -->
+                <Border
+                    BackgroundColor="White"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="4,0">
+
+                    <SearchBar
+                        x:Name="SearchBox"
+                        Placeholder="Название клуба или адрес"
+                        BackgroundColor="Transparent"
+                        TextChanged="OnSearchTextChanged" />
+
+                </Border>
+
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- ================================= -->
+        <!-- ФИЛЬТРЫ И СПИСОК КЛУБОВ -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="1"
+            Padding="16,16,16,0"
+            RowDefinitions="Auto,Auto,Auto,*"
+            RowSpacing="12">
+
+            <!-- Фильтры интересов -->
+            <VerticalStackLayout
+                Grid.Row="0"
+                Spacing="10">
+
+                <Label
+                    Text="🎯 Выбери интересы"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource BrandBlue}" />
+
+                <Grid
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="8"
+                    HeightRequest="44">
+
+                    <Button
+                        x:Name="AllInterestsButton"
+                        Text="Все интересы"
+                        Padding="12,6"
+                        FontSize="12"
+                        HeightRequest="36"
+                        CornerRadius="18"
+                        BackgroundColor="{StaticResource BrandPurple}"
+                        TextColor="White"
+                        Clicked="OnAllInterestsClicked" />
+
+                    <ScrollView
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalScrollBarVisibility="Never"
+                        VerticalScrollBarVisibility="Never"
+                        HeightRequest="44">
+
+                        <HorizontalStackLayout
+                            x:Name="InterestFiltersLayout"
+                            Spacing="7"
+                            VerticalOptions="Center" />
+
+                    </ScrollView>
+
+                </Grid>
+
+            </VerticalStackLayout>
+
+            <!-- Предложения клубов -->
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="10">
+
+                <Button
+                    x:Name="SuggestClubButton"
+                    Text="✨ Предложить клуб"
+                    HeightRequest="48"
+                    Padding="6"
+                    BackgroundColor="{StaticResource LightPurple}"
+                    TextColor="{StaticResource BrandPurple}"
+                    CornerRadius="16"
+                    FontSize="12"
+                    Clicked="OnSuggestClubClicked" />
+
+                <Button
+                    x:Name="MySuggestionsButton"
+                    Grid.Column="1"
+                    Text="📨 Мои предложения"
+                    HeightRequest="48"
+                    Padding="6"
+                    BackgroundColor="{StaticResource LightPink}"
+                    TextColor="#A91A79"
+                    CornerRadius="16"
+                    FontSize="12"
+                    Clicked="OnMySuggestionsClicked" />
+
+            </Grid>
+
+            <!-- Статус и обновление -->
+            <Grid
+                Grid.Row="2"
+                ColumnDefinitions="*,Auto,Auto"
+                ColumnSpacing="8">
+
+                <Label
+                    x:Name="StatusLabel"
+                    Text="Загрузка клубов..."
+                    FontSize="13"
+                    VerticalOptions="Center"
+                    TextColor="{StaticResource AppTextSecondary}" />
+
+                <ActivityIndicator
+                    x:Name="LoadingIndicator"
+                    Grid.Column="1"
+                    IsRunning="False"
+                    IsVisible="False"
+                    Color="{StaticResource BrandPurple}"
+                    VerticalOptions="Center" />
+
+                <Button
+                    Grid.Column="2"
+                    Text="↻ Обновить"
+                    FontSize="12"
+                    Padding="12,6"
+                    BackgroundColor="{StaticResource LightCyan}"
+                    TextColor="#087CA3"
+                    CornerRadius="14"
+                    Clicked="OnRefreshClicked" />
+
+            </Grid>
+
+            <!-- ================================= -->
+            <!-- КАРТОЧКИ КЛУБОВ -->
+            <!-- ================================= -->
+
+            <CollectionView
+                x:Name="ClubsCollection"
+                Grid.Row="3"
+                SelectionMode="None">
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="20"
+                        Spacing="10"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="🔎 Клубы не найдены"
+                            FontSize="19"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <Label
+                            Text="Попробуй изменить поиск или выбранные интересы."
+                            FontSize="13"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{StaticResource AppTextSecondary}" />
+
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,14"
+                            Padding="0"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnClubTapped" />
+                            </Border.GestureRecognizers>
+
+                            <VerticalStackLayout Spacing="0">
+
+                                <!-- Фото клуба -->
+                                <Image
+                                    Source="{Binding PhotoUrl}"
+                                    IsVisible="{Binding HasPhoto}"
+                                    HeightRequest="145"
+                                    Aspect="AspectFill"
+                                    BackgroundColor="{StaticResource LightPurple}" />
+
+                                <VerticalStackLayout
+                                    Padding="16"
+                                    Spacing="9">
+
+                                    <!-- Название -->
+                                    <Label
+                                        Text="{Binding Name}"
+                                        FontSize="20"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource BrandBlue}" />
+
+                                    <!-- Описание -->
+                                    <Label
+                                        Text="{Binding Description}"
+                                        FontSize="13"
+                                        TextColor="{StaticResource AppText}"
+                                        MaxLines="3"
+                                        LineBreakMode="TailTruncation" />
+
+                                    <!-- Адрес -->
+                                    <Label
+                                        Text="{Binding Address, StringFormat='📍 {0}'}"
+                                        IsVisible="{Binding HasAddress}"
+                                        FontSize="12"
+                                        TextColor="{StaticResource AppTextSecondary}" />
+
+                                    <!-- Количество участников -->
+                                    <Label
+                                        Text="{Binding MembersText}"
+                                        FontSize="13"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource BrandPurple}" />
+
+                                    <!-- Интересы -->
+                                    <Border
+                                        BackgroundColor="{StaticResource LightPink}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 12"
+                                        Padding="10,7"
+                                        HorizontalOptions="Start">
+
+                                        <Label
+                                            Text="{Binding InterestsText}"
+                                            FontSize="12"
+                                            TextColor="#A91A79"
+                                            LineBreakMode="WordWrap" />
+
+                                    </Border>
+
+                                    <!-- Подсказка перехода -->
+                                    <Label
+                                        Text="Подробнее  →"
+                                        FontSize="13"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="End"
+                                        TextColor="{StaticResource BrandPurple}" />
+
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>

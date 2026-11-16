@@ -1,0 +1,11 @@
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\bin\Release\net8.0\ClubPlatform.Shared.deps.json
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\bin\Release\net8.0\ClubPlatform.Shared.dll
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\bin\Release\net8.0\ClubPlatform.Shared.pdb
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Release\net8.0\ClubPlatform.Shared.GeneratedMSBuildEditorConfig.editorconfig
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Release\net8.0\ClubPlatform.Shared.AssemblyInfoInputs.cache
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Release\net8.0\ClubPlatform.Shared.AssemblyInfo.cs
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Release\net8.0\ClubPlatform.Shared.csproj.CoreCompileInputs.cache
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Release\net8.0\ClubPlatform.Shared.dll
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Release\net8.0\refint\ClubPlatform.Shared.dll
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Release\net8.0\ClubPlatform.Shared.pdb
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Release\net8.0\ref\ClubPlatform.Shared.dll

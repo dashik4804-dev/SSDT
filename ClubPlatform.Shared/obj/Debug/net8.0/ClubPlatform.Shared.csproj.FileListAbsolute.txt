@@ -1,0 +1,22 @@
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\bin\Debug\net8.0\ClubPlatform.Shared.deps.json
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\bin\Debug\net8.0\ClubPlatform.Shared.dll
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\bin\Debug\net8.0\ClubPlatform.Shared.pdb
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.GeneratedMSBuildEditorConfig.editorconfig
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.AssemblyInfoInputs.cache
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.AssemblyInfo.cs
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.csproj.CoreCompileInputs.cache
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.dll
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\refint\ClubPlatform.Shared.dll
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.pdb
+F:\БАУМАНКА\5 сем\КР\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ref\ClubPlatform.Shared.dll
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\bin\Debug\net8.0\ClubPlatform.Shared.deps.json
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\bin\Debug\net8.0\ClubPlatform.Shared.dll
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\bin\Debug\net8.0\ClubPlatform.Shared.pdb
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.GeneratedMSBuildEditorConfig.editorconfig
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.AssemblyInfoInputs.cache
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.AssemblyInfo.cs
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.csproj.CoreCompileInputs.cache
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.dll
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\refint\ClubPlatform.Shared.dll
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ClubPlatform.Shared.pdb
+F:\project_KR\KR\ClubPlatform\ClubPlatform.Shared\obj\Debug\net8.0\ref\ClubPlatform.Shared.dll

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Support.MySupportTicketsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Мои обращения"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            Padding="20,22,20,22"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,24,24">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="💌 СВОИ ЛЮДИ · ПОДДЕРЖКА"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Мои обращения"
+                    FontSize="27"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Здесь твои вопросы и ответы нашей команды 💜"
+                    FontSize="14"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- СПИСОК ОБРАЩЕНИЙ -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="1"
+            Padding="16,18,16,0">
+
+            <CollectionView
+                x:Name="TicketsCollection"
+                SelectionMode="None">
+
+                <!-- ПУСТОЙ СПИСОК -->
+                <CollectionView.EmptyView>
+
+                    <VerticalStackLayout
+                        Padding="20,50"
+                        Spacing="12">
+
+                        <Label
+                            Text="💌"
+                            FontSize="48"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Обращений пока нет"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Если появится вопрос, напиши в поддержку. Мы обязательно постараемся помочь!"
+                            FontSize="14"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </CollectionView.EmptyView>
+
+                <!-- КАРТОЧКИ ОБРАЩЕНИЙ -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,16"
+                            Padding="16"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <VerticalStackLayout Spacing="13">
+
+                                <!-- ЗАГОЛОВОК -->
+                                <Grid
+                                    ColumnDefinitions="*,Auto"
+                                    ColumnSpacing="10">
+
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="{Binding Subject}"
+                                        FontSize="19"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource BrandBlue}"
+                                        VerticalOptions="Center"
+                                        LineBreakMode="WordWrap" />
+
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="💬"
+                                        FontSize="22"
+                                        VerticalOptions="Start" />
+
+                                </Grid>
+
+                                <!-- СООБЩЕНИЕ -->
+                                <Border
+                                    Padding="13"
+                                    BackgroundColor="{StaticResource AppBackground}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 14">
+
+                                    <VerticalStackLayout Spacing="7">
+
+                                        <Label
+                                            Text="Твоё сообщение"
+                                            FontSize="12"
+                                            FontAttributes="Bold"
+                                            TextColor="{StaticResource BrandPurple}" />
+
+                                        <Label
+                                            Text="{Binding Message}"
+                                            FontSize="14"
+                                            TextColor="{StaticResource AppText}"
+                                            LineBreakMode="WordWrap" />
+
+                                    </VerticalStackLayout>
+
+                                </Border>
+
+                                <!-- ДАТА И СТАТУС -->
+                                <Grid
+                                    ColumnDefinitions="*,Auto"
+                                    ColumnSpacing="10">
+
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="{Binding CreatedAtText}"
+                                        FontSize="12"
+                                        TextColor="{StaticResource AppTextSecondary}"
+                                        VerticalOptions="Center" />
+
+                                    <Border
+                                        Grid.Column="1"
+                                        Padding="10,7"
+                                        BackgroundColor="{StaticResource LightOrange}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 11">
+
+                                        <Label
+                                            Text="{Binding StatusText}"
+                                            FontSize="12"
+                                            FontAttributes="Bold"
+                                            TextColor="#95530D" />
+
+                                    </Border>
+
+                                </Grid>
+
+                                <!-- ================================= -->
+                                <!-- ОТВЕТ АДМИНИСТРАЦИИ -->
+                                <!-- ================================= -->
+
+                                <VerticalStackLayout
+                                    IsVisible="{Binding HasResponse}"
+                                    Spacing="10">
+
+                                    <BoxView
+                                        HeightRequest="1"
+                                        Color="{StaticResource AppBorder}" />
+
+                                    <Label
+                                        Text="✓ Ответ администрации"
+                                        FontSize="15"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource SuccessColor}" />
+
+                                    <Border
+                                        Padding="13"
+                                        BackgroundColor="#E4F8EE"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 14">
+
+                                        <Label
+                                            Text="{Binding AdminResponse}"
+                                            FontSize="14"
+                                            TextColor="{StaticResource AppText}"
+                                            LineBreakMode="WordWrap" />
+
+                                    </Border>
+
+                                    <Label
+                                        Text="{Binding AnsweredAtText}"
+                                        FontSize="12"
+                                        TextColor="{StaticResource AppTextSecondary}" />
+
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <!-- ИНДИКАТОР ЗАГРУЗКИ -->
+            <ActivityIndicator
+                x:Name="LoadingIndicator"
+                IsRunning="False"
+                IsVisible="False"
+                Color="{StaticResource BrandPurple}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

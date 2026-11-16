@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.ChatsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Чаты"
+    BackgroundColor="{StaticResource AppBackground}"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid
+        RowDefinitions="Auto,*"
+        RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ЯРКАЯ ШАПКА ЭКРАНА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            StrokeThickness="0"
+            Padding="20,24,20,22">
+
+            <Border.StrokeShape>
+                <RoundRectangle
+                    CornerRadius="0,0,24,24" />
+            </Border.StrokeShape>
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="💬 СВОИ ЛЮДИ"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Твои чаты 💜"
+                    FontSize="27"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <!-- Подпись зависит от роли пользователя -->
+                <Label
+                    x:Name="SubtitleLabel"
+                    Text="Переписки клубов, в которых Вы участвуете"
+                    FontSize="14"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- СПИСОК ЧАТОВ -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="1"
+            Padding="16,18,16,0"
+            RowDefinitions="Auto,*"
+            RowSpacing="14">
+
+            <!-- Статус и обновление -->
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
+
+                <Label
+                    x:Name="StatusLabel"
+                    Text="Загружаем чаты..."
+                    FontSize="14"
+                    VerticalOptions="Center"
+                    TextColor="{StaticResource AppTextSecondary}" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="↻ Обновить"
+                    HeightRequest="40"
+                    Padding="14,6"
+                    FontSize="12"
+                    BackgroundColor="{StaticResource LightCyan}"
+                    TextColor="#087CA3"
+                    CornerRadius="14"
+                    Clicked="OnRefreshClicked" />
+
+            </Grid>
+
+            <!-- ================================= -->
+            <!-- КАРТОЧКИ ЧАТОВ -->
+            <!-- ================================= -->
+
+            <CollectionView
+                x:Name="ChatsCollection"
+                Grid.Row="1"
+                SelectionMode="None">
+
+                <!-- Если чатов пока нет -->
+                <CollectionView.EmptyView>
+
+                    <VerticalStackLayout
+                        Padding="20,45"
+                        Spacing="12"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="💌"
+                            FontSize="48"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Пока нет чатов"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <Label
+                            Text="Вступи в клуб — и его чат появится здесь."
+                            FontSize="14"
+                            HorizontalTextAlignment="Center"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,14"
+                            Padding="12"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1">
+
+                            <Border.StrokeShape>
+                                <RoundRectangle
+                                    CornerRadius="20" />
+                            </Border.StrokeShape>
+
+                            <!-- Открытие переписки -->
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnClubTapped" />
+                            </Border.GestureRecognizers>
+
+                            <Grid
+                                ColumnDefinitions="82,*,Auto"
+                                ColumnSpacing="12">
+
+                                <!-- Фото клуба -->
+                                <Border
+                                    Grid.Column="0"
+                                    WidthRequest="82"
+                                    HeightRequest="82"
+                                    BackgroundColor="{StaticResource LightPurple}"
+                                    StrokeThickness="0">
+
+                                    <Border.StrokeShape>
+                                        <RoundRectangle
+                                            CornerRadius="15" />
+                                    </Border.StrokeShape>
+
+                                    <Grid>
+
+                                        <!-- Фон, если фото отсутствует -->
+                                        <Label
+                                            Text="💜"
+                                            FontSize="28"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+
+                                        <Image
+                                            Source="{Binding PhotoUrl}"
+                                            IsVisible="{Binding HasPhoto}"
+                                            Aspect="AspectFill"
+                                            HeightRequest="82"
+                                            WidthRequest="82" />
+
+                                    </Grid>
+
+                                </Border>
+
+                                <!-- Информация о чате -->
+                                <VerticalStackLayout
+                                    Grid.Column="1"
+                                    Spacing="7"
+                                    VerticalOptions="Center">
+
+                                    <Label
+                                        Text="{Binding Name}"
+                                        FontSize="17"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource BrandBlue}"
+                                        LineBreakMode="WordWrap" />
+
+                                    <Label
+                                        Text="{Binding MembersText}"
+                                        FontSize="12"
+                                        TextColor="{StaticResource AppTextSecondary}" />
+
+                                    <Label
+                                        Text="Открыть переписку →"
+                                        FontSize="12"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource BrandPurple}" />
+
+                                </VerticalStackLayout>
+
+                                <!-- Стрелка перехода -->
+                                <Label
+                                    Grid.Column="2"
+                                    Text="›"
+                                    FontSize="28"
+                                    TextColor="{StaticResource BrandPurple}"
+                                    VerticalOptions="Center" />
+
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

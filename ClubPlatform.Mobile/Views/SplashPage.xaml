@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.SplashPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="#2521A8">
+
+    <Grid>
+        <Image
+            Source="app_splash.jpg"
+            Aspect="AspectFill"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill" />
+    </Grid>
+
+</ContentPage>

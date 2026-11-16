@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Clubs.ClubMembersPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Участники клуба"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            Padding="20,22,20,22"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,24,24">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="👥 СВОИ ЛЮДИ · КЛУБ"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Участники клуба"
+                    FontSize="27"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Знакомься с людьми, которые разделяют твои интересы 💜"
+                    FontSize="14"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- ОСНОВНАЯ ЧАСТЬ -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="1"
+            Padding="16,18,16,0"
+            RowDefinitions="Auto,Auto,*"
+            RowSpacing="14">
+
+            <!-- НАЗВАНИЕ КЛУБА -->
+            <Border
+                Grid.Row="0"
+                Padding="15"
+                BackgroundColor="White"
+                Stroke="{StaticResource AppBorder}"
+                StrokeThickness="1"
+                StrokeShape="RoundRectangle 18">
+
+                <VerticalStackLayout Spacing="7">
+
+                    <Label
+                        x:Name="ClubNameLabel"
+                        Text="Участники клуба"
+                        FontSize="19"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource BrandBlue}"
+                        LineBreakMode="WordWrap" />
+
+                    <Label
+                        x:Name="DescriptionLabel"
+                        Text="Участники этого клуба."
+                        FontSize="13"
+                        TextColor="{StaticResource AppTextSecondary}"
+                        LineBreakMode="WordWrap" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- ОБНОВЛЕНИЕ -->
+            <Button
+                Grid.Row="1"
+                Text="↻ Обновить список участников"
+                HeightRequest="46"
+                FontSize="14"
+                FontAttributes="Bold"
+                BackgroundColor="{StaticResource LightCyan}"
+                TextColor="#087CA3"
+                CornerRadius="14"
+                Clicked="OnRefreshClicked" />
+
+            <!-- ================================= -->
+            <!-- СПИСОК УЧАСТНИКОВ -->
+            <!-- ================================= -->
+
+            <CollectionView
+                x:Name="MembersCollection"
+                Grid.Row="2"
+                SelectionMode="None">
+
+                <!-- ПУСТОЙ СПИСОК -->
+                <CollectionView.EmptyView>
+
+                    <VerticalStackLayout
+                        Padding="20,45"
+                        Spacing="12">
+
+                        <Label
+                            Text="👥"
+                            FontSize="46"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Участников пока нет"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Когда в клуб вступят пользователи, они появятся здесь."
+                            FontSize="14"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </CollectionView.EmptyView>
+
+                <!-- КАРТОЧКИ УЧАСТНИКОВ -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,14"
+                            Padding="15"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <VerticalStackLayout Spacing="13">
+
+                                <!-- ПЕРЕХОД К ПРОФИЛЮ -->
+                                <Grid
+                                    ColumnDefinitions="52,*,Auto"
+                                    ColumnSpacing="12">
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnMemberProfileTapped" />
+                                    </Grid.GestureRecognizers>
+
+
+                                    <!-- ФОТОГРАФИЯ УЧАСТНИКА -->
+                                    <Border
+                                        Grid.Column="0"
+                                        WidthRequest="52"
+                                        HeightRequest="52"
+                                        BackgroundColor="{StaticResource LightPurple}"
+                                        Stroke="{StaticResource AppBorder}"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 26">
+
+                                        <Grid>
+
+                                            <!-- Заглушка под фотографией -->
+                                            <Label
+                                                Text="👤"
+                                                FontSize="25"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center" />
+
+                                            <!-- Настоящая фотография пользователя -->
+                                            <Image
+                                                Source="{Binding PhotoUrl}"
+                                                Aspect="AspectFill"
+                                                WidthRequest="52"
+                                                HeightRequest="52" />
+
+                                        </Grid>
+
+                                    </Border>
+
+
+                                    <!-- ИМЯ И ДАТА -->
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Spacing="5"
+                                        VerticalOptions="Center">
+
+                                        <Label
+                                            Text="{Binding Name}"
+                                            FontSize="17"
+                                            FontAttributes="Bold"
+                                            TextColor="{StaticResource BrandBlue}"
+                                            LineBreakMode="WordWrap" />
+
+                                        <Label
+                                            Text="{Binding JoinedAtText, StringFormat='В клубе с {0}'}"
+                                            FontSize="12"
+                                            TextColor="{StaticResource AppTextSecondary}" />
+
+                                    </VerticalStackLayout>
+
+                                    <!-- СТРЕЛКА -->
+                                    <Label
+                                        Grid.Column="2"
+                                        Text="›"
+                                        FontSize="28"
+                                        TextColor="{StaticResource BrandPurple}"
+                                        VerticalOptions="Center" />
+
+                                </Grid>
+
+                                <!-- СТАТУС -->
+                                <Border
+                                    Padding="11,8"
+                                    BackgroundColor="{StaticResource LightPurple}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 11"
+                                    HorizontalOptions="Start">
+
+                                    <Label
+                                        Text="{Binding StatusText}"
+                                        FontSize="12"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource BrandPurple}" />
+
+                                </Border>
+
+                                <!-- КНОПКА ПРОСМОТРА ПРОФИЛЯ -->
+                                <Border
+                                    Padding="12"
+                                    BackgroundColor="{StaticResource AppBackground}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 13">
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Tapped="OnMemberProfileTapped" />
+                                    </Border.GestureRecognizers>
+
+                                    <Label
+                                        Text="Посмотреть профиль →"
+                                        FontSize="14"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource BrandPurple}"
+                                        HorizontalTextAlignment="Center" />
+
+                                </Border>
+
+                                <!-- УДАЛЕНИЕ (ТОЛЬКО АДМИН) -->
+                                <Button
+                                    Text="Удалить из клуба"
+                                    HeightRequest="44"
+                                    FontSize="13"
+                                    FontAttributes="Bold"
+                                    BackgroundColor="#FFE3E8"
+                                    TextColor="{StaticResource ErrorColor}"
+                                    CornerRadius="13"
+                                    Clicked="OnRemoveMemberClicked"
+                                    IsVisible="{Binding CanRemove}" />
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

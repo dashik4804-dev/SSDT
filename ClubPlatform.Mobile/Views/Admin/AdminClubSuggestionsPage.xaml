@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Admin.AdminClubSuggestionsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Предложения клубов"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <Border
+            Grid.Row="0"
+            Padding="20,22,20,22"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,24,24">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="💡 СВОИ ЛЮДИ · ADMIN"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Предложения клубов"
+                    FontSize="26"
+                    FontAttributes="Bold"
+                    TextColor="White" />
+
+                <Label
+                    Text="Превращай идеи участников в новые сообщества 💜"
+                    FontSize="14"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
+        <Grid
+            Grid.Row="1"
+            Padding="16,18,16,0"
+            RowDefinitions="Auto,*"
+            RowSpacing="14">
+
+            <!-- Статус и обновление -->
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
+
+                <Label
+                    x:Name="StatusLabel"
+                    Text="Загружаем предложения..."
+                    FontSize="13"
+                    TextColor="{StaticResource AppTextSecondary}"
+                    VerticalOptions="Center"
+                    LineBreakMode="WordWrap" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="↻ Обновить"
+                    HeightRequest="40"
+                    Padding="12,6"
+                    FontSize="12"
+                    BackgroundColor="{StaticResource LightCyan}"
+                    TextColor="#087CA3"
+                    CornerRadius="14"
+                    Clicked="OnRefreshClicked" />
+
+            </Grid>
+
+            <!-- СПИСОК ПРЕДЛОЖЕНИЙ -->
+            <CollectionView
+                x:Name="SuggestionsCollection"
+                Grid.Row="1"
+                SelectionMode="None">
+
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout
+                        Padding="20,45"
+                        Spacing="12">
+
+                        <Label
+                            Text="💡"
+                            FontSize="46"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Предложений пока нет"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Когда пользователи предложат новые клубы, их идеи появятся здесь."
+                            FontSize="14"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,16"
+                            Padding="16"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <VerticalStackLayout Spacing="12">
+
+                                <!-- Название -->
+                                <Label
+                                    Text="{Binding Name}"
+                                    FontSize="20"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource BrandBlue}"
+                                    LineBreakMode="WordWrap" />
+
+                                <!-- Автор -->
+                                <Label
+                                    Text="{Binding UserName, StringFormat='👤 Автор предложения: {0}'}"
+                                    FontSize="13"
+                                    TextColor="{StaticResource AppTextSecondary}" />
+
+                                <!-- Описание -->
+                                <Border
+                                    Padding="12"
+                                    BackgroundColor="{StaticResource AppBackground}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 14">
+
+                                    <Label
+                                        Text="{Binding Description}"
+                                        FontSize="14"
+                                        TextColor="{StaticResource AppText}"
+                                        LineBreakMode="WordWrap" />
+
+                                </Border>
+
+                                <!-- Интерес -->
+                                <Border
+                                    IsVisible="{Binding HasInterest}"
+                                    Padding="10,8"
+                                    BackgroundColor="{StaticResource LightPurple}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12">
+
+                                    <Label
+                                        Text="{Binding InterestText}"
+                                        FontSize="13"
+                                        TextColor="{StaticResource BrandPurple}"
+                                        LineBreakMode="WordWrap" />
+
+                                </Border>
+
+                                <!-- Адрес -->
+                                <Label
+                                    Text="{Binding SuggestedAddressText}"
+                                    IsVisible="{Binding HasSuggestedAddress}"
+                                    FontSize="13"
+                                    TextColor="{StaticResource AppTextSecondary}"
+                                    LineBreakMode="WordWrap" />
+
+                                <!-- Статус -->
+                                <Border
+                                    Padding="10,8"
+                                    BackgroundColor="{StaticResource LightOrange}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12"
+                                    HorizontalOptions="Start">
+
+                                    <Label
+                                        Text="{Binding StatusText}"
+                                        FontSize="13"
+                                        FontAttributes="Bold"
+                                        TextColor="#95530D" />
+
+                                </Border>
+
+                                <!-- Дата -->
+                                <Label
+                                    Text="{Binding CreatedAtText}"
+                                    FontSize="12"
+                                    TextColor="{StaticResource AppTextSecondary}" />
+
+                                <!-- Комментарий администратора -->
+                                <Border
+                                    IsVisible="{Binding HasAdminComment}"
+                                    Padding="12"
+                                    BackgroundColor="{StaticResource LightCyan}"
+                                    StrokeThickness="0"
+                                    StrokeShape="RoundRectangle 12">
+
+                                    <Label
+                                        Text="{Binding AdminCommentText}"
+                                        FontSize="13"
+                                        TextColor="#185B77"
+                                        LineBreakMode="WordWrap" />
+
+                                </Border>
+
+                                <!-- КНОПКИ РАССМОТРЕНИЯ -->
+                                <Grid
+                                    ColumnDefinitions="*,*"
+                                    ColumnSpacing="10"
+                                    IsVisible="{Binding CanReview}">
+
+                                    <Button
+                                        Text="✓ Одобрить"
+                                        Grid.Column="0"
+                                        HeightRequest="46"
+                                        FontSize="13"
+                                        FontAttributes="Bold"
+                                        Padding="6,8"
+                                        BackgroundColor="{StaticResource LightCyan}"
+                                        TextColor="#087CA3"
+                                        CornerRadius="14"
+                                        Clicked="OnApproveClicked" />
+
+                                    <Button
+                                        Text="Отклонить"
+                                        Grid.Column="1"
+                                        HeightRequest="46"
+                                        FontSize="13"
+                                        FontAttributes="Bold"
+                                        Padding="6,8"
+                                        BackgroundColor="#FFE3E8"
+                                        TextColor="{StaticResource ErrorColor}"
+                                        CornerRadius="14"
+                                        Clicked="OnRejectClicked" />
+
+                                </Grid>
+
+                                <!-- СОЗДАНИЕ КЛУБА -->
+                                <Button
+                                    Text="💜 Создать клуб по предложению"
+                                    IsVisible="{Binding CanCreateClub}"
+                                    HeightRequest="50"
+                                    FontSize="13"
+                                    FontAttributes="Bold"
+                                    BackgroundColor="{StaticResource BrandPurple}"
+                                    TextColor="White"
+                                    CornerRadius="15"
+                                    Clicked="OnCreateClubClicked" />
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

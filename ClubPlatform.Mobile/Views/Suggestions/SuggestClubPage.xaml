@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClubPlatform.Mobile.Views.Suggestions.SuggestClubPage"
+             Title="Предложить клуб"
+             BackgroundColor="{StaticResource AppBackground}">
+    <ScrollView>
+        <VerticalStackLayout Padding="20,20,20,34" Spacing="18">
+            <VerticalStackLayout Spacing="8">
+                <Label Text="✨ Предложить клуб" FontSize="27" FontAttributes="Bold"
+                       TextColor="{StaticResource BrandBlue}" />
+                <Label Text="Есть идея для нового сообщества в Москве? Расскажи о ней — администрация рассмотрит предложение."
+                       FontSize="14" TextColor="{StaticResource AppTextSecondary}" />
+            </VerticalStackLayout>
+            <Border BackgroundColor="White" Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1" StrokeShape="RoundRectangle 20" Padding="18">
+                <VerticalStackLayout Spacing="16">
+                    <VerticalStackLayout Spacing="7">
+                        <Label Text="Название клуба *" FontSize="15" FontAttributes="Bold"
+                               TextColor="{StaticResource AppText}" />
+                        <Border Stroke="{StaticResource AppBorder}" StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource AppBackground}"
+                                Padding="10,2">
+                            <Entry x:Name="NameEntry" Placeholder="Например, Клуб настольных игр"
+                                   MaxLength="150" BackgroundColor="Transparent"
+                                   TextColor="{StaticResource AppText}" PlaceholderColor="{StaticResource AppTextSecondary}" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="7">
+                        <Label Text="Описание идеи *" FontSize="15" FontAttributes="Bold"
+                               TextColor="{StaticResource AppText}" />
+                        <Border Stroke="{StaticResource AppBorder}" StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource AppBackground}"
+                                Padding="12,7">
+                            <Editor x:Name="DescriptionEditor" Placeholder="Чем будут заниматься участники? Для кого этот клуб?"
+                                    AutoSize="TextChanges" MinimumHeightRequest="125" MaxLength="2000"
+                                    BackgroundColor="Transparent" TextColor="{StaticResource AppText}"
+                                    PlaceholderColor="{StaticResource AppTextSecondary}" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="7">
+                        <Label Text="Предполагаемый адрес" FontSize="15" FontAttributes="Bold"
+                               TextColor="{StaticResource AppText}" />
+                        <Border Stroke="{StaticResource AppBorder}" StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource AppBackground}"
+                                Padding="10,2">
+                            <Entry x:Name="AddressEntry" Placeholder="Необязательно · улица или район Москвы"
+                                   MaxLength="500" BackgroundColor="Transparent"
+                                   TextColor="{StaticResource AppText}" PlaceholderColor="{StaticResource AppTextSecondary}" />
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="7">
+                        <Label Text="Интерес" FontSize="15" FontAttributes="Bold"
+                               TextColor="{StaticResource AppText}" />
+                        <Border Stroke="{StaticResource AppBorder}" StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource AppBackground}"
+                                Padding="10,2">
+                            <Picker x:Name="InterestPicker" Title="Выбери интерес (необязательно)"
+                                    BackgroundColor="Transparent" TextColor="{StaticResource AppText}"
+                                    TitleColor="{StaticResource AppTextSecondary}"
+                                    SelectedIndexChanged="OnInterestSelectionChanged" />
+                        </Border>
+                        <VerticalStackLayout x:Name="OtherInterestLayout" IsVisible="False" Spacing="7">
+                            <Label Text="Название нового интереса *" FontSize="14"
+                                   TextColor="{StaticResource AppText}" />
+                            <Border Stroke="{StaticResource AppBorder}" StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 12" BackgroundColor="{StaticResource AppBackground}"
+                                    Padding="10,2">
+                                <Entry x:Name="OtherInterestEntry" Placeholder="Например, Настольный теннис"
+                                       MaxLength="100" BackgroundColor="Transparent"
+                                       TextColor="{StaticResource AppText}"
+                                       PlaceholderColor="{StaticResource AppTextSecondary}" />
+                            </Border>
+                            <Label Text="Новый интерес тоже будет передан на рассмотрение."
+                                   FontSize="12" TextColor="{StaticResource AppTextSecondary}" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+            <Label Text="* Обязательные поля" FontSize="12"
+                   TextColor="{StaticResource AppTextSecondary}" />
+            <Label x:Name="StatusLabel" FontSize="13"
+                   TextColor="{StaticResource AppTextSecondary}" />
+            <Button x:Name="SubmitButton" Text="💜 Отправить предложение"
+                    HeightRequest="56" BackgroundColor="{StaticResource BrandPurple}"
+                    TextColor="White" FontSize="16" FontAttributes="Bold"
+                    CornerRadius="16" Clicked="OnSubmitClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

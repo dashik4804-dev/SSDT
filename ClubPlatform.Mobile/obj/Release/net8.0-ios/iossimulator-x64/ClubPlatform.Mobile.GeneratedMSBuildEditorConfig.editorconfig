@@ -1,0 +1,197 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0-ios
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ClubPlatform.Mobile
+build_property.ProjectDir = F:\project_KR\KR\ClubPlatform\ClubPlatform.Mobile\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/MainPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.MainPage.xaml
+build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
+build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Admin/AdminClubSuggestionsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Admin.AdminClubSuggestionsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Admin\AdminClubSuggestionsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Admin\AdminClubSuggestionsPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Admin/AdminHomePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Admin.AdminHomePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Admin\AdminHomePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Admin\AdminHomePage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Admin/AdminPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Admin.AdminPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Admin\AdminPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Admin\AdminPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Admin/ClubEditorPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Admin.ClubEditorPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Admin\ClubEditorPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Admin\ClubEditorPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Admin/ClubManagementPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Admin.ClubManagementPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Admin\ClubManagementPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Admin\ClubManagementPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Admin/InterestManagementPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Admin.InterestManagementPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Admin\InterestManagementPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Admin\InterestManagementPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Admin/MutedUsersPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Admin.MutedUsersPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Admin\MutedUsersPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Admin\MutedUsersPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/ChatsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.ChatsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ChatsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ChatsPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Clubs/ChatPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Clubs.ChatPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Clubs\ChatPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Clubs\ChatPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Clubs/ClubDetailsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Clubs.ClubDetailsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Clubs\ClubDetailsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Clubs\ClubDetailsPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Clubs/ClubMembersPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Clubs.ClubMembersPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Clubs\ClubMembersPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Clubs\ClubMembersPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Clubs/ClubsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Clubs.ClubsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Clubs\ClubsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Clubs\ClubsPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/EditProfilePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.EditProfilePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\EditProfilePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\EditProfilePage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\LoginPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/ProfilePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.ProfilePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ProfilePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ProfilePage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/RegisterPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.RegisterPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\RegisterPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\RegisterPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Reports/MyReportsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Reports.MyReportsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Reports\MyReportsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Reports\MyReportsPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/SplashPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.SplashPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\SplashPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\SplashPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Suggestions/MyClubSuggestionsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Suggestions.MyClubSuggestionsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Suggestions\MyClubSuggestionsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Suggestions\MyClubSuggestionsPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Suggestions/SuggestClubPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Suggestions.SuggestClubPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Suggestions\SuggestClubPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Suggestions\SuggestClubPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Support/AdminSupportTicketsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Support.AdminSupportTicketsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Support\AdminSupportTicketsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Support\AdminSupportTicketsPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Support/CreateSupportTicketPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Support.CreateSupportTicketPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Support\CreateSupportTicketPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Support\CreateSupportTicketPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Support/MySupportTicketsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Support.MySupportTicketsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Support\MySupportTicketsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Support\MySupportTicketsPage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/Users/PublicUserProfilePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.Users.PublicUserProfilePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\Users\PublicUserProfilePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\Users\PublicUserProfilePage.xaml
+
+[F:/project_KR/KR/ClubPlatform/ClubPlatform.Mobile/Views/WelcomePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ClubPlatform.Mobile.Views.WelcomePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\WelcomePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\WelcomePage.xaml

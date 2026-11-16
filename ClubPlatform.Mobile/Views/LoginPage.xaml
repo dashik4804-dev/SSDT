@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Вход"
+    BackgroundColor="{StaticResource AppBackground}"
+    Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <Border
+            Grid.Row="0"
+            Padding="22,26,22,28"
+            StrokeThickness="0"
+            StrokeShape="RoundRectangle 0,0,26,26">
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="18">
+
+                <!-- НАЗАД -->
+                <Button
+                    Text="← Назад"
+                    HorizontalOptions="Start"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    Padding="0"
+                    Clicked="OnBackClicked" />
+
+                <VerticalStackLayout Spacing="10">
+
+                    <Label
+                        Text="💜 С возвращением!"
+                        FontSize="29"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        LineBreakMode="WordWrap" />
+
+                    <Label
+                        Text="Твои клубы, друзья и новые знакомства уже ждут тебя."
+                        FontSize="14"
+                        TextColor="#F0E9FF"
+                        LineBreakMode="WordWrap" />
+
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- СОДЕРЖИМОЕ -->
+        <ScrollView Grid.Row="1">
+
+            <VerticalStackLayout
+                Padding="18,24,18,32"
+                Spacing="20">
+
+                <!-- ФОРМА ВХОДА -->
+                <Border
+                    Padding="18"
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 22">
+
+                    <VerticalStackLayout Spacing="18">
+
+                        <Label
+                            Text="🔐 Вход в аккаунт"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <!-- EMAIL -->
+                        <VerticalStackLayout Spacing="7">
+
+                            <Label
+                                Text="Email"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Border
+                                Padding="10,3"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                Stroke="{StaticResource AppBorder}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Entry
+                                    x:Name="EmailEntry"
+                                    Placeholder="name@example.com"
+                                    Keyboard="Email"
+                                    TextColor="{StaticResource AppText}"
+                                    PlaceholderColor="{StaticResource AppTextSecondary}"
+                                    BackgroundColor="Transparent"
+                                    ClearButtonVisibility="WhileEditing"
+                                    HeightRequest="48" />
+
+                            </Border>
+
+                        </VerticalStackLayout>
+
+                        <!-- ПАРОЛЬ -->
+                        <VerticalStackLayout Spacing="7">
+
+                            <Label
+                                Text="Пароль"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="{StaticResource AppText}" />
+
+                            <Border
+                                Padding="10,3"
+                                BackgroundColor="{StaticResource AppBackground}"
+                                Stroke="{StaticResource AppBorder}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 14">
+
+                                <Entry
+                                    x:Name="PasswordEntry"
+                                    Placeholder="Введи пароль"
+                                    IsPassword="True"
+                                    TextColor="{StaticResource AppText}"
+                                    PlaceholderColor="{StaticResource AppTextSecondary}"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="48"
+                                    ReturnType="Go"
+                                    Completed="OnLoginClicked" />
+
+                            </Border>
+
+                        </VerticalStackLayout>
+
+                        <!-- ИНДИКАТОР -->
+                        <ActivityIndicator
+                            x:Name="LoadingIndicator"
+                            IsRunning="False"
+                            IsVisible="False"
+                            Color="{StaticResource BrandPurple}"
+                            HorizontalOptions="Center" />
+
+                        <!-- СТАТУС -->
+                        <Label
+                            x:Name="StatusLabel"
+                            Text=""
+                            FontSize="13"
+                            TextColor="{StaticResource ErrorColor}"
+                            LineBreakMode="WordWrap" />
+
+                        <!-- ВОЙТИ -->
+                        <Button
+                            x:Name="LoginButton"
+                            Text="💜 Войти в аккаунт"
+                            HeightRequest="56"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            BackgroundColor="{StaticResource BrandPurple}"
+                            TextColor="White"
+                            CornerRadius="16"
+                            Clicked="OnLoginClicked" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ПОДСКАЗКА -->
+                <Border
+                    Padding="15"
+                    BackgroundColor="{StaticResource LightPurple}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 16">
+
+                    <Label
+                        Text="✨ Продолжай находить своих людей и открывать новые сообщества."
+                        FontSize="13"
+                        TextColor="{StaticResource BrandPurple}"
+                        HorizontalTextAlignment="Center"
+                        LineBreakMode="WordWrap" />
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

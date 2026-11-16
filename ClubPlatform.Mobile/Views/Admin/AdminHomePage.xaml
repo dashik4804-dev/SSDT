@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Admin.AdminHomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Панель администратора"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <ScrollView>
+
+        <VerticalStackLayout Spacing="0">
+
+            <!-- ================================= -->
+            <!-- ШАПКА ПАНЕЛИ АДМИНИСТРАТОРА -->
+            <!-- ================================= -->
+
+            <Border
+                Padding="22,24,22,26"
+                StrokeThickness="0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle
+                        CornerRadius="0,0,26,26" />
+                </Border.StrokeShape>
+
+                <Border.Background>
+                    <LinearGradientBrush
+                        StartPoint="0,0"
+                        EndPoint="1,1">
+
+                        <GradientStop
+                            Color="{StaticResource BrandBlue}"
+                            Offset="0" />
+
+                        <GradientStop
+                            Color="{StaticResource BrandPurple}"
+                            Offset="0.7" />
+
+                        <GradientStop
+                            Color="{StaticResource BrandPink}"
+                            Offset="1" />
+
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="🛡️ СВОИ ЛЮДИ · ADMIN"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        TextColor="#EDE4FF" />
+
+                    <Label
+                        Text="Панель администратора"
+                        FontSize="27"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        LineBreakMode="WordWrap" />
+
+                    <Label
+                        Text="Управляй платформой и создавай комфортное пространство для общения 💜"
+                        FontSize="14"
+                        TextColor="#F0E9FF"
+                        LineBreakMode="WordWrap" />
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <!-- ================================= -->
+            <!-- РАЗДЕЛЫ УПРАВЛЕНИЯ -->
+            <!-- ================================= -->
+
+            <VerticalStackLayout
+                Padding="16,22,16,30"
+                Spacing="16">
+
+                <Label
+                    Text="✨ Центр управления"
+                    FontSize="21"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource BrandBlue}" />
+
+                <Label
+                    Text="Выбери раздел для работы"
+                    FontSize="14"
+                    TextColor="{StaticResource AppTextSecondary}" />
+
+                <!-- ================================= -->
+                <!-- ЖАЛОБЫ -->
+                <!-- ================================= -->
+
+                <Border
+                    BackgroundColor="{StaticResource LightPink}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="18">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="🚩 Жалобы"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            TextColor="#A91A79" />
+
+                        <Label
+                            Text="Просмотр жалоб, удаление сообщений и модерация участников."
+                            FontSize="14"
+                            TextColor="{StaticResource AppText}"
+                            LineBreakMode="WordWrap" />
+
+                        <Button
+                            Text="Открыть жалобы →"
+                            HeightRequest="48"
+                            BackgroundColor="{StaticResource BrandPink}"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            Clicked="OnReportsClicked" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ================================= -->
+                <!-- ПОДДЕРЖКА -->
+                <!-- ================================= -->
+
+                <Border
+                    BackgroundColor="{StaticResource LightCyan}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="18">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="💬 Обращения в поддержку"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="#087CA3"
+                            LineBreakMode="WordWrap" />
+
+                        <Label
+                            Text="Просмотр обращений пользователей и отправка ответов."
+                            FontSize="14"
+                            TextColor="{StaticResource AppText}"
+                            LineBreakMode="WordWrap" />
+
+                        <Button
+                            Text="Открыть обращения →"
+                            HeightRequest="48"
+                            BackgroundColor="{StaticResource BrandCyan}"
+                            TextColor="#185B77"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            Clicked="OnSupportTicketsClicked" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ================================= -->
+                <!-- УПРАВЛЕНИЕ КЛУБАМИ -->
+                <!-- ================================= -->
+
+                <Border
+                    BackgroundColor="{StaticResource LightPurple}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="18">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="🏘️ Управление клубами"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandPurple}"
+                            LineBreakMode="WordWrap" />
+
+                        <Label
+                            Text="Создание клубов, изменение информации и удаление."
+                            FontSize="14"
+                            TextColor="{StaticResource AppText}"
+                            LineBreakMode="WordWrap" />
+
+                        <Button
+                            Text="Управлять клубами →"
+                            HeightRequest="48"
+                            BackgroundColor="{StaticResource BrandPurple}"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            Clicked="OnManageClubsClicked" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ================================= -->
+                <!-- ОГРАНИЧЕНИЯ ПОЛЬЗОВАТЕЛЕЙ -->
+                <!-- ================================= -->
+
+                <Border
+                    BackgroundColor="#FFE3E8"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="18">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="🚫 Ограничения пользователей"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource ErrorColor}"
+                            LineBreakMode="WordWrap" />
+
+                        <Label
+                            Text="Просмотр заблокированных и исключённых участников. Управление ограничениями."
+                            FontSize="14"
+                            TextColor="{StaticResource AppText}"
+                            LineBreakMode="WordWrap" />
+
+                        <Button
+                            Text="Открыть список →"
+                            HeightRequest="48"
+                            BackgroundColor="{StaticResource ErrorColor}"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            Clicked="OnMutedUsersClicked" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ================================= -->
+                <!-- ПРЕДЛОЖЕНИЯ КЛУБОВ -->
+                <!-- ================================= -->
+
+                <Border
+                    BackgroundColor="{StaticResource LightOrange}"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="18">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="💡 Предложения клубов"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            TextColor="#95530D" />
+
+                        <Label
+                            Text="Просмотр идей пользователей, принятие решений и комментарии."
+                            FontSize="14"
+                            TextColor="{StaticResource AppText}"
+                            LineBreakMode="WordWrap" />
+
+                        <Button
+                            Text="Открыть предложения →"
+                            HeightRequest="48"
+                            BackgroundColor="{StaticResource BrandOrange}"
+                            TextColor="#633900"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            Clicked="OnClubSuggestionsClicked" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+                <!-- ================================= -->
+                <!-- УПРАВЛЕНИЕ ИНТЕРЕСАМИ -->
+                <!-- ================================= -->
+
+                <Border
+                    BackgroundColor="White"
+                    Stroke="{StaticResource AppBorder}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="18">
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Label
+                            Text="🎯 Управление интересами"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}" />
+
+                        <Label
+                            Text="Добавление, переименование и удаление интересов."
+                            FontSize="14"
+                            TextColor="{StaticResource AppText}"
+                            LineBreakMode="WordWrap" />
+
+                        <Button
+                            Text="Открыть интересы →"
+                            HeightRequest="48"
+                            BackgroundColor="{StaticResource LightPurple}"
+                            TextColor="{StaticResource BrandPurple}"
+                            FontAttributes="Bold"
+                            CornerRadius="15"
+                            Clicked="OnManageInterestsClicked" />
+
+                    </VerticalStackLayout>
+
+                </Border>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

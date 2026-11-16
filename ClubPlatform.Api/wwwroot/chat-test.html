@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <title>ClubPlatform - SignalR Test</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        #messages {
+            border: 1px solid #ccc;
+            min-height: 250px;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .system {
+            color: #777;
+        }
+    </style>
+
+    <!-- Временный клиент SignalR для тестирования -->
+    <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@8.0.7/dist/browser/signalr.min.js"></script>
+</head>
+
+<body>
+
+    <h1>ClubPlatform — SignalR Test</h1>
+
+    <label>
+        JWT:
+    </label>
+
+<textarea id="token"
+          rows="4"
+          placeholder="Вставь сюда JWT токен"></textarea>
+
+    <label>
+        ID клуба:
+    </label>
+
+    <input id="clubId"
+           type="text"
+           placeholder="UUID клуба">
+
+    <button onclick="connect()">
+        Подключиться к чату
+    </button>
+
+    <button onclick="leaveClub()">
+        Покинуть чат
+    </button>
+
+    <hr>
+
+    <div id="messages"></div>
+
+    <hr>
+
+    <input id="messageInput"
+           type="text"
+           placeholder="Введите сообщение">
+
+    <button onclick="sendMessage()">
+        Отправить сообщение
+    </button>
+
+    <script>
+    let connection = null;
+
+    function logSystem(text) {
+        const container =
+            document.getElementById("messages");
+
+        const div =
+            document.createElement("div");
+
+        div.className = "message system";
+
+        div.textContent =
+            "[SYSTEM] " + text;
+
+        container.appendChild(div);
+
+        container.scrollTop =
+            container.scrollHeight;
+    }
+
+    function logMessage(message) {
+        const container =
+            document.getElementById("messages");
+
+        const div =
+            document.createElement("div");
+
+        div.className = "message";
+
+        div.textContent =
+            `${message.userName}: ${message.content}`;
+
+        container.appendChild(div);
+
+        container.scrollTop =
+            container.scrollHeight;
+    }
+
+    async function connect() {
+        const token =
+            document.getElementById("token").value.trim();
+
+        const clubId =
+            document.getElementById("clubId").value.trim();
+
+        if (!token) {
+            alert("Вставь JWT токен.");
+            return;
+        }
+
+        if (!clubId) {
+            alert("Укажи ID клуба.");
+            return;
+        }
+
+        connection =
+            new signalR.HubConnectionBuilder()
+                .withUrl(
+                    "/hubs/club-chat",
+                    {
+                        accessTokenFactory: () => token
+                    })
+                .withAutomaticReconnect()
+                .build();
+
+        connection.on(
+            "ReceiveMessage",
+            function (message) {
+                logMessage(message);
+            });
+
+        try {
+            await connection.start();
+
+            logSystem("SignalR подключён.");
+
+            await connection.invoke(
+                "JoinClub",
+                clubId);
+
+            logSystem(
+                "Вход в чат клуба выполнен.");
+        }
+        catch (error) {
+            console.error(error);
+
+            logSystem(
+                "Ошибка: " + error);
+        }
+    }
+
+    async function leaveClub() {
+        if (!connection) {
+            return;
+        }
+
+        const clubId =
+            document.getElementById("clubId").value.trim();
+
+        try {
+            await connection.invoke(
+                "LeaveClub",
+                clubId);
+
+            logSystem(
+                "Вы вышли из SignalR-группы.");
+        }
+        catch (error) {
+            console.error(error);
+
+            logSystem(
+                "Ошибка выхода: " + error);
+        }
+    }
+
+    async function sendMessage() {
+        if (!connection) {
+            alert("Сначала подключись.");
+            return;
+        }
+
+        const clubId =
+            document.getElementById("clubId").value.trim();
+
+        const input =
+            document.getElementById("messageInput");
+
+        const content =
+            input.value.trim();
+
+        if (!content) {
+            return;
+        }
+
+        try {
+            await connection.invoke(
+                "SendMessage",
+                clubId,
+                content);
+
+            input.value = "";
+        }
+        catch (error) {
+            console.error(error);
+
+            logSystem(
+                "Ошибка отправки: " + error);
+        }
+    }
+    </script>
+
+</body>
+</html>

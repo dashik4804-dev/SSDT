@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="ClubPlatform.Mobile.Views.Admin.ClubManagementPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Управление клубами"
+    BackgroundColor="{StaticResource AppBackground}">
+
+    <Grid RowDefinitions="Auto,*"
+          RowSpacing="0">
+
+        <!-- ================================= -->
+        <!-- ГРАДИЕНТНАЯ ШАПКА -->
+        <!-- ================================= -->
+
+        <Border
+            Grid.Row="0"
+            Padding="20,22,20,22"
+            StrokeThickness="0">
+
+            <Border.StrokeShape>
+                <RoundRectangle
+                    CornerRadius="0,0,24,24" />
+            </Border.StrokeShape>
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+
+                    <GradientStop
+                        Color="{StaticResource BrandBlue}"
+                        Offset="0" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPurple}"
+                        Offset="0.7" />
+
+                    <GradientStop
+                        Color="{StaticResource BrandPink}"
+                        Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label
+                    Text="🏘️ СВОИ ЛЮДИ · ADMIN"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    TextColor="#EDE4FF" />
+
+                <Label
+                    Text="Управление клубами"
+                    FontSize="26"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    LineBreakMode="WordWrap" />
+
+                <Label
+                    Text="Создавай и развивай сообщества Москвы 💜"
+                    FontSize="14"
+                    TextColor="#F0E9FF"
+                    LineBreakMode="WordWrap" />
+
+            </VerticalStackLayout>
+
+        </Border>
+
+        <!-- ================================= -->
+        <!-- ОСНОВНОЕ СОДЕРЖИМОЕ -->
+        <!-- ================================= -->
+
+        <Grid
+            Grid.Row="1"
+            Padding="16,18,16,0"
+            RowDefinitions="Auto,*"
+            RowSpacing="16">
+
+            <!-- Количество клубов и создание -->
+            <Grid
+                Grid.Row="0"
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
+
+                <Label
+                    x:Name="StatusLabel"
+                    Text="Загружаем клубы..."
+                    FontSize="14"
+                    TextColor="{StaticResource AppTextSecondary}"
+                    VerticalOptions="Center" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="+ Создать клуб"
+                    FontSize="13"
+                    FontAttributes="Bold"
+                    HeightRequest="44"
+                    Padding="14,8"
+                    BackgroundColor="{StaticResource BrandPurple}"
+                    TextColor="White"
+                    CornerRadius="14"
+                    Clicked="OnCreateClicked" />
+
+            </Grid>
+
+            <!-- ================================= -->
+            <!-- СПИСОК КЛУБОВ -->
+            <!-- ================================= -->
+
+            <CollectionView
+                x:Name="ClubsCollection"
+                Grid.Row="1"
+                SelectionMode="None">
+
+                <CollectionView.EmptyView>
+
+                    <VerticalStackLayout
+                        Padding="20,45"
+                        Spacing="12"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="🏘️"
+                            FontSize="46"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Клубов пока нет"
+                            FontSize="21"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource BrandBlue}"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Нажми «Создать клуб», чтобы добавить первое сообщество."
+                            FontSize="14"
+                            TextColor="{StaticResource AppTextSecondary}"
+                            HorizontalTextAlignment="Center"
+                            LineBreakMode="WordWrap" />
+
+                    </VerticalStackLayout>
+
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border
+                            Margin="0,0,0,18"
+                            BackgroundColor="White"
+                            Stroke="{StaticResource AppBorder}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 20">
+
+                            <VerticalStackLayout Spacing="0">
+
+                                <!-- ================================= -->
+                                <!-- ФОТО КЛУБА -->
+                                <!-- ================================= -->
+
+                                <Grid HeightRequest="160">
+
+                                    <!-- Фон на случай отсутствия фото -->
+                                    <Border
+                                        BackgroundColor="{StaticResource LightPurple}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 18">
+
+                                        <Label
+                                            Text="💜"
+                                            FontSize="42"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+
+                                    </Border>
+
+                                    <Image
+                                        Source="{Binding PhotoUrl}"
+                                        Aspect="AspectFill"
+                                        HeightRequest="160"
+                                        IsVisible="{Binding HasPhoto}" />
+
+                                </Grid>
+
+                                <!-- ================================= -->
+                                <!-- ИНФОРМАЦИЯ О КЛУБЕ -->
+                                <!-- ================================= -->
+
+                                <VerticalStackLayout
+                                    Padding="16"
+                                    Spacing="12">
+
+                                    <Label
+                                        Text="{Binding Name}"
+                                        FontSize="20"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource BrandBlue}"
+                                        LineBreakMode="WordWrap" />
+
+                                    <!-- Адрес -->
+                                    <HorizontalStackLayout Spacing="7">
+
+                                        <Label
+                                            Text="📍"
+                                            FontSize="14" />
+
+                                        <Label
+                                            Text="{Binding Address}"
+                                            FontSize="13"
+                                            TextColor="{StaticResource AppTextSecondary}"
+                                            LineBreakMode="WordWrap" />
+
+                                    </HorizontalStackLayout>
+
+                                    <!-- Количество участников -->
+                                    <HorizontalStackLayout Spacing="7">
+
+                                        <Label
+                                            Text="👥"
+                                            FontSize="14" />
+
+                                        <Label
+                                            Text="{Binding MembersText}"
+                                            FontSize="13"
+                                            TextColor="{StaticResource AppTextSecondary}" />
+
+                                    </HorizontalStackLayout>
+
+                                    <!-- Интересы -->
+                                    <Border
+                                        BackgroundColor="{StaticResource LightPurple}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 12"
+                                        Padding="12,9">
+
+                                        <VerticalStackLayout Spacing="5">
+
+                                            <Label
+                                                Text="✨ Интересы клуба"
+                                                FontSize="12"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource BrandPurple}" />
+
+                                            <Label
+                                                Text="{Binding InterestsText}"
+                                                FontSize="13"
+                                                TextColor="{StaticResource AppText}"
+                                                LineBreakMode="WordWrap" />
+
+                                        </VerticalStackLayout>
+
+                                    </Border>
+
+                                    <!-- ================================= -->
+                                    <!-- КНОПКИ УПРАВЛЕНИЯ -->
+                                    <!-- ================================= -->
+
+                                    <Grid
+                                        ColumnDefinitions="*,*"
+                                        ColumnSpacing="10"
+                                        Margin="0,5,0,0">
+
+                                        <!-- Редактирование -->
+                                        <Button
+                                            Grid.Column="0"
+                                            Text="✏️ Изменить"
+                                            FontSize="13"
+                                            FontAttributes="Bold"
+                                            HeightRequest="46"
+                                            Padding="6,8"
+                                            BackgroundColor="{StaticResource LightPurple}"
+                                            TextColor="{StaticResource BrandPurple}"
+                                            CornerRadius="14"
+                                            Clicked="OnEditClicked" />
+
+                                        <!-- Удаление -->
+                                        <Button
+                                            Grid.Column="1"
+                                            Text="Удалить"
+                                            FontSize="13"
+                                            FontAttributes="Bold"
+                                            HeightRequest="46"
+                                            Padding="6,8"
+                                            BackgroundColor="#FFE3E8"
+                                            TextColor="{StaticResource ErrorColor}"
+                                            CornerRadius="14"
+                                            Clicked="OnDeleteClicked" />
+
+                                    </Grid>
+
+                                </VerticalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>
