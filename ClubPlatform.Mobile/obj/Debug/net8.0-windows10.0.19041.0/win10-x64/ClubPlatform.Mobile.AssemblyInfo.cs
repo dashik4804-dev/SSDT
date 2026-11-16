@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ClubPlatform.Mobile")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.3.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.3+626201348785de6bfd573401d50eba5a0b66aa4d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ClubPlatform.Mobile")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ClubPlatform.Mobile")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.3.0.0")]
